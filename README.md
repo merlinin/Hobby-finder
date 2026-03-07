@@ -47,9 +47,7 @@ Beispieldaten befüllt. Sie können die Seed‑Werte in
 ## Analyse der Definitionen
 
 Im Unterordner `analysis` befindet sich das Skript `analyze_definitions.py`.
-Es lädt `data/definitions.json`, normalisiert den Text (Lowercase,
-URL- und Satzzeichen-Entfernung), verwendet eine deduplizierte DE+EN-
-Stopwortliste und berechnet Wortfrequenzen.
+Es lädt `data/definitions.json`, normalisiert den Text (Lowercase, URL- und Satzzeichen-Entfernung), verwendet eine deduplizierte DE+EN-Stopwortliste, akzeptiert optionale Bereichs-Stopwörter per `--domain-stopwords` und berechnet Wortfrequenzen.
 
 Aufruf:
 
@@ -79,6 +77,12 @@ Optional können Sie bereichsspezifische Stopwörter ergänzen (z. B.
 
 ```bash
 python analysis/analyze_definitions.py --domain-stopwords hobby,freizeit --top-n 20
+```
+
+Bei fehlender `wordcloud`-Abhängigkeit kann die Analyse ohne PNG erfolgen:
+
+```bash
+python analysis/analyze_definitions.py --skip-wordcloud
 ```
 
 ## Datenbasis
