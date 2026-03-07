@@ -1,0 +1,103 @@
+
+# Definitionen von „Hobby“ und verwandten Begriffen
+
+## Lexika / Wörterbücher
+
+Viele Wörterbücher definieren **Hobby** als freiwillige Tätigkeit, die in der Freizeit ausgeübt wird und nicht der Erwerbsarbeit dient. Die wichtigsten Quellen geben folgende Bedeutungen:
+
+- **Duden**: beschreibt ein Hobby als eine freiwillig gewählte Beschäftigung, die einen „Ausgleich zur täglichen Arbeit“ bietet. Es wird mit Eifer betrieben, füllt die Freizeit und dient dem persönlichen Ausgleich[Link](https://www.duden.de/rechtschreibung/Hobby#:~:text=%E2%93%98.)
+- **Brockhaus** (deutsche Enzyklopädie): versteht unter Hobby eine Tätigkeit, der man in der Freizeit aus Interesse oder zum Ausgleich zur beruflichen Tätigkeit nachgeht; es bezeichnet diese Liebhaberei auch als „Steckenpferd“[Link](https://brockhaus.de/ecs/enzy/article/hobby#:~:text=Hobby%20%5B.)
+- **Oxford Learner’s Dictionary**: definiert Hobby als „an activity that you do for pleasure when you are not working“[Link](https://www.oxfordlearnersdictionaries.com/us/definition/english/hobby#:~:text=1,play%20jazz%20as%20a%20hobby.)
+- **Cambridge Dictionary**: ähnlich, ein Hobby ist „an activity that someone does for pleasure when they are not working“[Link](https://dictionary.cambridge.org/dictionary/english/hobby#:~:text=an%20activity%20%20that%20someone,when%20they%20are%20not%20working.)
+- **Merriam‑Webster**: beschreibt Hobby als „a pursuit outside one’s regular occupation engaged in especially for relaxation“[Link](https://www.merriam-webster.com/dictionary/hobby#:~:text=%3A%20a%20pursuit%20outside%20one%27s,engaged%20in%20especially%20for%20relaxation.)
+- **Wikipedia** (englisch): bezeichnet ein Hobby als regelmäßige Aktivität, die man aus Freude in der Freizeit ausübt; es kann Sammeln, kreative Beschäftigungen oder Sport umfassen und erfordert oft das Erlernen von Fähigkeiten[Link](https://en.wikipedia.org/wiki/Hobby#:~:text=A%20hobby%20is%20considered%20to,interests%20and%20developing%20fashions%2C%20making.)
+- **Wikipedia** (deutsch): betont, dass ein Hobby eine freiwillige und regelmäßige Freizeitbeschäftigung ist, die zur Entspannung oder zum Ausgleich beiträgt und nicht beruflich ausgeübt wird[Link](https://de.wikipedia.org/wiki/Hobby#:~:text=Dieser%20Artikel%20behandelt%20das%20Hobby,Begriffskl%C3%A4rung;) es unterscheidet Hobby von Arbeit durch das Fehlen von Einkommen und die Tatsache, dass man ein Hobby aus persönlicher Vorliebe regelmäßig betreibt[Link](https://de.wikipedia.org/wiki/Hobby#:~:text=Der%20Begriff%20Hobby%20hat%20eine,hat%20und%20sie%20regelm%C3%A4%C3%9Fig%20aus%C3%BCbt.)
+
+### Tabelle – Wörterbuch‑Definitionen von „Hobby“ (Kurzfassungen)
+
+| Quelle | Definition (Kurz) | Kerneigenschaften | Disziplin |
+|---|---|---|---|
+| Duden | Freizeit­beschäftigung als Ausgleich zur Arbeit[Link](https://www.duden.de/rechtschreibung/Hobby#:~:text=%E2%93%98) | freiwillig; Freizeit; persönliche Freude; Ausgleich | Lexikon |
+| Brockhaus | Tätigkeit, der man in der Freizeit aus Interesse oder zum Ausgleich nachgeht[Link](https://brockhaus.de/ecs/enzy/article/hobby#:~:text=Hobby%20%5B) | Freizeit; Interesse; Ausgleich; „Steckenpferd“ | Lexikon |
+| Oxford | Aktivität zum Vergnügen außerhalb der Arbeit[Link](https://www.oxfordlearnersdictionaries.com/us/definition/english/hobby#:~:text=1,play%20jazz%20as%20a%20hobby) | nicht beruflich; Vergnügen | Wörterbuch |
+| Cambridge | Aktivität für Vergnügen, wenn man nicht arbeitet[Link](https://dictionary.cambridge.org/dictionary/english/hobby#:~:text=an%20activity%20%20that%20someone,when%20they%20are%20not%20working) | Freizeit; Vergnügen | Wörterbuch |
+| Merriam‑Webster | Beschäftigung neben der regulären Arbeit, v. a. zur Entspannung[Link](https://www.merriam-webster.com/dictionary/hobby#:~:text=%3A%20a%20pursuit%20outside%20one%27s,engaged%20in%20especially%20for%20relaxation) | außerberuflich; Entspannung | Wörterbuch |
+| Wikipedia (EN) | regelmäßige Freizeitaktivität zum Vergnügen; fördert Fertigkeiten[Link](https://en.wikipedia.org/wiki/Hobby#:~:text=A%20hobby%20is%20considered%20to,interests%20and%20developing%20fashions%2C%20making) | regelmäßig; Freizeit; Vergnügen; Lernen | Enzyklopädie |
+| Wikipedia (DE) | freiwillige, regelmäßige Freizeitbeschäftigung zur Entspannung; nicht beruflich[Link](https://de.wikipedia.org/wiki/Hobby#:~:text=Dieser%20Artikel%20behandelt%20das%20Hobby,Begriffskl%C3%A4rung) | freiwillig; Freizeit; Ausgleich; keine Einnahmen[Link](https://de.wikipedia.org/wiki/Hobby#:~:text=Der%20Begriff%20Hobby%20hat%20eine,hat%20und%20sie%20regelm%C3%A4%C3%9Fig%20aus%C3%BCbt) | Enzyklopädie |
+
+## Wissenschaftliche Perspektiven
+
+### Serious‑Leisure‑Theory (Robert Stebbins)
+
+Der Soziologe **Robert Stebbins** unterscheidet zwischen *ernster* und *casual* Leisure. **Serious leisure** ist das „systematische Streben nach einer Amateur‑, Hobby‑ oder freiwilligen Tätigkeit, die so bedeutsam und erfüllend ist, dass die Beteiligten eine Freizeit‑Karriere mit spezialisierten Fähigkeiten und Wissen entwickeln“[Link](https://leisurestudies.org/news/leisure-reflections-no-62-by-robert-a-stebbins/#:~:text=,Such%20leisure%20requires%20considerable.) Diese Perspektive hebt hervor, dass Hobbyisten ihr Hobby langfristig verfolgen und dabei Fähigkeiten entwickeln; im Unterschied dazu ist *casual leisure* ein kurzzeitiges, hedonistisches Freizeitvergnügen[Link](https://leisurestudies.org/news/leisure-reflections-no-62-by-robert-a-stebbins/#:~:text=,Stebbins%2C%202005.) Stebbins betont auch, dass Amateure professionelle Gegenstücke haben, Hobbyisten dagegen nicht[Link](https://leisurestudies.org/news/leisure-reflections-no-62-by-robert-a-stebbins/#:~:text=We%20must%20now%20add%20to,The%20liberal%20arts%20hobbies%20are.)
+
+### Historische Definition (Steven Gelber)
+
+Der Historiker **Steven Gelber** definierte Hobby in seinem Buch *Hobbies* als produktive Freizeitbeschäftigung: eine Tätigkeit, bei der Menschen „freiwillig zu Hause mit einfachen Werkzeugen arbeiten, um einen Gegenstand oder eine Sammlung mit wirtschaftlichem Wert zu schaffen“[Link](https://zooniarchives.blogspot.com/2025/09/consumerism-and-hobbies.html#:~:text=Let%27s%20look%20at%20the%20definition,that%20has%20economic%20value.) Gelber unterscheidet Hobbys von reinem Konsum und betont, dass sie zwar wie Arbeit wirken können, aber aus Freude ausgeübt werden.
+
+### Psychologie / Freizeitforschung
+
+Psychologische Forschung hebt hervor, dass Hobbys zur **Erholung, Stressbewältigung und Persönlichkeitsentwicklung** beitragen. Sie fördern intrinsische Motivation, Selbstwirksamkeit und soziale Kontakte. Wissenschaftliche Beiträge sind hier vielfältig; die Serious‑Leisure‑Theory und Gelbers Ansatz sind exemplarisch.
+
+## Juristische / formale Definitionen
+
+- **JuraForum**: bezeichnet ein Hobby als freiwillige, regelmäßige, meist nicht gewinnorientierte Freizeitaktivität zur Entspannung oder Persönlichkeitsentfaltung und weist darauf hin, dass kein spezielles Gesetz den Begriff regelt[Link](https://www.juraforum.de/lexikon/hobby#:~:text=%3E%20Ein%20,Entspannung%20und%20pers%C3%B6nlichen%20Erf%C3%BCllung%20dient.) Juristische Abgrenzungen entstehen vor allem im Steuerrecht, wenn ein Hobby zur Gewinnerzielung wird; dann kann eine steuerpflichtige unternehmerische Tätigkeit vorliegen[Link](https://www.juraforum.de/lexikon/hobby#:~:text=%3E%20Ein%20,Entspannung%20und%20pers%C3%B6nlichen%20Erf%C3%BCllung%20dient.)
+- **Kanzlei Herfurtner**: erklärt das steuerrechtliche Konzept der **Liebhaberei**. Aktivtäten gelten als Liebhaberei (und bleiben steuerfrei), wenn sie überwiegend aus persönlicher Neigung ohne Gewinnerzielungsabsicht ausgeübt werden. Kriterien sind z. B. anhaltende Verluste, fehlende Gewinnplanung und Unverhältnismäßigkeit von Aufwand und Einkommen[Link](https://kanzlei-herfurtner.de/liebhaberei-steuer/#:~:text=Die%20Definition%20von%20Liebhaberei%20im,Steuerrecht) [Link](https://kanzlei-herfurtner.de/liebhaberei-steuer/#:~:text=Unterschiede%20zwischen%20Liebhaberei%20und%20gewerblicher,T%C3%A4tigkeit.)
+- **Nebenbeschäftigung / Nebentätigkeit**: Duden definiert Nebenbeschäftigung als „Tätigkeit, die jemand neben seiner eigentlichen Tätigkeit ausübt“[Link](https://www.duden.de/rechtschreibung/Nebenbeschaeftigung#:~:text=%E2%93%98.) Die Wikipedia‑Seite zu **Nebentätigkeit** erläutert, dass sie jede **entgeltliche Beschäftigung neben einer hauptberuflichen Tätigkeit** ist; das Entgelt wird als Nebenverdienst bezeichnet[Link](https://de.wikipedia.org/wiki/Nebent%C3%A4tigkeit#:~:text=Eine%20Nebent%C3%A4tigkeit%20ist%20jede%20Besch%C3%A4ftigung,der%20Aus%C3%BCbung%20einer%20Nebent%C3%A4tigkeit%20gesprochen.) Arbeits‑ und dienstrechtlich können auch unentgeltliche Tätigkeiten Nebentätigkeiten sein[Link](https://de.wikipedia.org/wiki/Nebent%C3%A4tigkeit#:~:text=Eine%20Nebent%C3%A4tigkeit%20ist%20jede%20Besch%C3%A4ftigung,der%20Aus%C3%BCbung%20einer%20Nebent%C3%A4tigkeit%20gesprochen.)
+
+## Alltagsdefinitionen / populäre Beschreibungen
+
+- **Indeed‑Artikel (2025)**: beschreibt Hobbys als Aktivitäten, die man „aus Vergnügen in seiner Freizeit“ ausführt, oft zur Entspannung oder um Langeweile zu vertreiben. Sie können Fähigkeiten fördern, werden aber ohne Druck verfolgt und können pausiert werden[Link](https://www.indeed.com/career-advice/finding-a-job/hobby-vs-passion#:~:text=A%20hobby%20is%20an%20activity,other%20hobbies%20you%20could%20pursue.)
+- **AIU‑Blog**: definiert Hobbys als jede regelmäßige Aktivität, die man in der Freizeit **zur eigenen Freude** ausführt. Sie werden aus intrinsischer Motivation betrieben und können kreative, körperliche oder intellektuelle Bereiche umfassen[Link](https://www.aiu.edu/blog/the-importance-of-having-a-hobby-enhancing-life-through-passion-and-creativity/#:~:text=A%20hobby%20is%20any%20activity,reading%20and%20learning%20new%20languages.)
+
+## Verwandte Begriffe und ihre Bedeutungen
+
+### Freizeitaktivität
+
+- **Duden**: definiert *Freizeitaktivität* schlicht als „Tätigkeit, die in der Freizeit ausgeübt wird“[Link](https://www.duden.de/rechtschreibung/Freizeitaktivitaet#:~:text=in%20der%20Freizeit%20,Aktivit%C3%A4t.) Der Begriff ist neutral; er beschreibt jede Handlung im Freizeitbereich (Beispiel: Fernsehen, Spazierengehen), ohne besondere emotionale Bindung.
+
+### Interesse
+
+- **Duden**: listet drei Bedeutungen von *Interesse*. Erstens: „geistige Anteilnahme, Aufmerksamkeit“[Link](https://www.duden.de/rechtschreibung/Interesse#:~:text=1.) Zweitens: „Neigung, Vorliebe“[Link](https://www.duden.de/rechtschreibung/Interesse#:~:text=Neigung%2C%20Vorliebe.) Drittens: das, woran jemandem sehr gelegen ist, also etwas Wichtiges oder Nützliches[Link](https://www.duden.de/rechtschreibung/Interesse#:~:text=das%2C%20woran%20jemandem%20sehr%20gelegen,oder%20n%C3%BCtzlich%20ist%3B%20Nutzen%2C%20Vorteil.) *Interesse* bezeichnet somit Aufmerksamkeit oder Neigung, nicht zwangsläufig eine regelmäßige Tätigkeit.
+
+### Leidenschaft
+
+- **Duden**: beschreibt *Leidenschaft* als Zustand starken, vom Verstand kaum zu kontrollierenden Gefühls[Link](https://www.duden.de/rechtschreibung/Leidenschaft#:~:text=sich%20in%20emotionalem%2C%20vom%20Verstand,begehrt%2C%20ein%20Ziel%20verfolgt%20wird.) Zweitens: „große Begeisterung, ausgeprägte Neigung, Passion“ für etwas, dem man sich mit Hingabe widmet[Link](https://www.duden.de/rechtschreibung/Leidenschaft#:~:text=gro%C3%9Fe%20Begeisterung%2C%20ausgepr%C3%A4gte%20,man%20sich%20mit%20Hingabe%20widmet.) Drittens: starke, heftige Zuneigung zu einem Menschen[Link](https://www.duden.de/rechtschreibung/Leidenschaft#:~:text=sich%20in%20starkem%20Gef%C3%BChl%2C%20in,%C3%A4u%C3%9Fernde%20Zuneigung%20zu%20einem%20Menschen.) Im Kontext von Aktivitäten bezeichnet „aus Leidenschaft“ eine intensive, engagierte Hingabe, die über bloße Freizeitbeschäftigung hinausgeht.
+
+### Nebenbeschäftigung / Nebentätigkeit
+
+- **Duden**: *Nebenbeschäftigung* ist eine zusätzliche Tätigkeit neben der eigentlichen Arbeit[Link](https://www.duden.de/rechtschreibung/Nebenbeschaeftigung#:~:text=%E2%93%98.) 
+- **Wikipedia**: Eine *Nebentätigkeit* ist jede Beschäftigung **gegen Entgelt** neben einer hauptberuflichen Tätigkeit[Link](https://de.wikipedia.org/wiki/Nebent%C3%A4tigkeit#:~:text=Eine%20Nebent%C3%A4tigkeit%20ist%20jede%20Besch%C3%A4ftigung,der%20Aus%C3%BCbung%20einer%20Nebent%C3%A4tigkeit%20gesprochen.) Sie unterscheidet sich vom Hobby, da sie typischerweise der Einkommenserzielung dient und arbeits‑ bzw. dienstrechtliche Regeln unterliegt[Link](https://de.wikipedia.org/wiki/Nebent%C3%A4tigkeit#:~:text=Eine%20Nebent%C3%A4tigkeit%20ist%20jede%20Besch%C3%A4ftigung,der%20Aus%C3%BCbung%20einer%20Nebent%C3%A4tigkeit%20gesprochen.)
+
+### Tabelle – Bedeutungen verwandter Begriffe (Kurzfassungen)
+
+| Begriff | Definition / Bedeutung (Kurz) | Kerneigenschaften | Quelle |
+|---|---|---|---|
+| **Freizeitaktivität** | Tätigkeit, die in der Freizeit ausgeübt wird[Link](https://www.duden.de/rechtschreibung/Freizeitaktivitaet#:~:text=in%20der%20Freizeit%20,Aktivit%C3%A4t) | neutral; zeitliche Einordnung; keine Aussage über Motivation | Duden |
+| **Interesse** | geistige Anteilnahme / Aufmerksamkeit[Link](https://www.duden.de/rechtschreibung/Interesse#:~:text=1;) auch Neigung[Link](https://www.duden.de/rechtschreibung/Interesse#:~:text=Neigung%2C%20Vorliebe) | Aufmerksamkeit; Vorliebe; noch keine Handlung | Duden |
+| **Leidenschaft** | großer Enthusiasmus oder intensiver Gefühlszustand, der eine starke Neigung oder Passion ausdrückt[Link](https://www.duden.de/rechtschreibung/Leidenschaft#:~:text=gro%C3%9Fe%20Begeisterung%2C%20ausgepr%C3%A4gte%20,man%20sich%20mit%20Hingabe%20widmet) | starke Emotion; Hingabe; kann destruktiv oder konstruktiv sein | Duden |
+| **Nebenbeschäftigung** | Tätigkeit neben der eigentlichen Arbeit[Link](https://www.duden.de/rechtschreibung/Nebenbeschaeftigung#:~:text=%E2%93%98) | zusätzlich zur Hauptarbeit; oft entgeltlich | Duden |
+| **Nebentätigkeit** | entgeltliche Beschäftigung neben dem Hauptberuf[Link](https://de.wikipedia.org/wiki/Nebent%C3%A4tigkeit#:~:text=Eine%20Nebent%C3%A4tigkeit%20ist%20jede%20Besch%C3%A4ftigung,der%20Aus%C3%BCbung%20einer%20Nebent%C3%A4tigkeit%20gesprochen) | Nebenverdienst; rechtlich reguliert[Link](https://de.wikipedia.org/wiki/Nebent%C3%A4tigkeit#:~:text=Eine%20Nebent%C3%A4tigkeit%20ist%20jede%20Besch%C3%A4ftigung,der%20Aus%C3%BCbung%20einer%20Nebent%C3%A4tigkeit%20gesprochen) | Wikipedia |
+
+## Typische Eigenschaften eines Hobbys
+
+Aus den Definitionen und wissenschaftlichen Analysen lassen sich folgende **typische Eigenschaften** eines Hobbys extrahieren:
+
+- **Freiwilligkeit / intrinsische Motivation** – Hobbys werden aus eigenem Antrieb und persönlichem Interesse betrieben. Sie sind nicht verpflichtend[Link](https://www.duden.de/rechtschreibung/Hobby#:~:text=%E2%93%98.)
+- **Freizeit / Außerberuflichkeit** – Sie finden in der Freizeit statt und stehen nicht im Mittelpunkt der beruflichen Tätigkeit[Link](https://www.oxfordlearnersdictionaries.com/us/definition/english/hobby#:~:text=1,play%20jazz%20as%20a%20hobby) [Link](https://www.merriam-webster.com/dictionary/hobby#:~:text=%3A%20a%20pursuit%20outside%20one%27s,engaged%20in%20especially%20for%20relaxation.)
+- **Keine primäre Gewinnerzielung** – Hobbys dienen der Freude oder Entspannung; sie sind von Einkommenserzielung (Nebentätigkeit) zu unterscheiden[Link](https://de.wikipedia.org/wiki/Hobby#:~:text=Der%20Begriff%20Hobby%20hat%20eine,hat%20und%20sie%20regelm%C3%A4%C3%9Fig%20aus%C3%BCbt) [Link](https://www.juraforum.de/lexikon/hobby#:~:text=%3E%20Ein%20,Entspannung%20und%20pers%C3%B6nlichen%20Erf%C3%BCllung%20dient.)
+- **Regelmäßigkeit und Dauer** – Viele Definitionen betonen, dass Hobbys regelmäßig und langfristig betrieben werden; in der Serious‑Leisure‑Theory wird von einer „Freizeit‑Karriere“ gesprochen[Link](https://leisurestudies.org/news/leisure-reflections-no-62-by-robert-a-stebbins/#:~:text=,Such%20leisure%20requires%20considerable.)
+- **Energie / Engagement** – Hobbys werden mit Eifer und Begeisterung ausgeübt; sie können mit Leidenschaft verbunden sein[Link](https://www.duden.de/rechtschreibung/Hobby#:~:text=%E2%93%98) [Link](https://www.duden.de/rechtschreibung/Leidenschaft#:~:text=gro%C3%9Fe%20Begeisterung%2C%20ausgepr%C3%A4gte%20,man%20sich%20mit%20Hingabe%20widmet.)
+- **Entwicklung von Fähigkeiten / Wissen** – Hobbys fördern das Erlernen neuer Fertigkeiten und Kenntnisse[Link](https://en.wikipedia.org/wiki/Hobby#:~:text=A%20hobby%20is%20considered%20to,interests%20and%20developing%20fashions%2C%20making,) was im Serious‑Leisure‑Ansatz ausdrücklich hervorgehoben wird[Link](https://leisurestudies.org/news/leisure-reflections-no-62-by-robert-a-stebbins/#:~:text=,Such%20leisure%20requires%20considerable.)
+- **Identitätsstiftend** – Die deutsche Wikipedia merkt an, dass Hobbys zur Selbstverortung beitragen und Teil der persönlichen Identität sein können[Link](https://de.wikipedia.org/wiki/Hobby#:~:text=Dieser%20Artikel%20behandelt%20das%20Hobby,Begriffskl%C3%A4rung.)
+- **Abgrenzung zur Arbeit / Nebenjob** – Anders als Nebentätigkeiten dienen Hobbys nicht primär der Einkommenserzielung; sie unterscheiden sich auch von beruflichen Verpflichtungen durch das Maß an Selbstbestimmung[Link](https://de.wikipedia.org/wiki/Nebent%C3%A4tigkeit#:~:text=Eine%20Nebent%C3%A4tigkeit%20ist%20jede%20Besch%C3%A4ftigung,der%20Aus%C3%BCbung%20einer%20Nebent%C3%A4tigkeit%20gesprochen) [Link](https://www.duden.de/rechtschreibung/Nebenbeschaeftigung#:~:text=%E2%93%98.)
+
+## Zusammenfassung – Unterschiede zwischen den Begriffen
+
+- **Hobby** ist eine freiwillige, regelmäßige Freizeitbeschäftigung, die aus persönlichem Interesse betrieben wird. Sie dient dem Ausgleich, der Entspannung und häufig der persönlichen Entwicklung. Sie ist nicht primär auf Einkommen ausgerichtet.
+- **Freizeitaktivität** ist der Oberbegriff für jede Tätigkeit in der Freizeit – von passivem Fernsehen bis zu aktiven Hobbys. Der Begriff enthält keine Aussage über Leidenschaft oder Dauer.
+- **Interesse** bezeichnet eine geistige Anteilnahme oder Neigung; daraus kann ein Hobby entstehen, muss aber nicht. Interesse ist die Voraussetzung für ein Hobby, aber es fehlt noch die regelmäßige Handlung.
+- **Leidenschaft** beschreibt eine besonders starke Emotion oder Begeisterung für etwas; sie kann ein Hobby intensivieren („hobby with passion“), kann sich aber auch auf Beziehungen oder andere Lebensbereiche beziehen. Im Gegensatz zu einem Hobby steht die emotionale Intensität im Vordergrund.
+- **Nebenbeschäftigung / Nebentätigkeit** ist eine (meist entgeltliche) Zusatzarbeit neben der Hauptberufstätigkeit. Anders als beim Hobby steht die Einkommenserzielung oder berufliche Nutzung im Vordergrund, und es gibt arbeitsrechtliche Regelungen[Link](https://de.wikipedia.org/wiki/Nebent%C3%A4tigkeit#:~:text=Eine%20Nebent%C3%A4tigkeit%20ist%20jede%20Besch%C3%A4ftigung,der%20Aus%C3%BCbung%20einer%20Nebent%C3%A4tigkeit%20gesprochen.)
+
+Diese Zusammenstellung soll helfen, Hobbys in Abgrenzung zu verwandten Begriffen zu definieren und liefert zugleich eine Grundlage für ein Attributionsmodell, das Hobbys anhand ihrer Eigenschaften bewertet.
