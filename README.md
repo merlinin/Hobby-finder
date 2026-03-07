@@ -34,6 +34,8 @@ python app.py
 
 Die API ist anschließend unter `http://localhost:5000/` erreichbar.
 
+- `GET /` – Startseite für die persönliche Selbstreflexion inkl. Wordcloud.
+- `GET /wordcloud.png` – Generiert die Wordcloud aus `Hobby-Definitionen.txt`.
 - `GET /hobbies` – Listet alle Hobbys auf. Optionaler Query‑Parameter `q`
   filtert nach Name, `attribute` filtert nach Attributname.
 - `GET /attributes` – Gibt alle definierten Attribute zurück.

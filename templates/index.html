@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hobby-Selbstreflexion</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f5f7fb;
+        color: #1b1f2a;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      .card {
+        background: white;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+        margin-bottom: 16px;
+      }
+      h1, h2 {
+        margin-top: 0;
+      }
+      .wordcloud {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid #dde3f0;
+      }
+      .top-words {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+      }
+      .top-words li {
+        background: #eef3ff;
+        border-radius: 8px;
+        padding: 8px 10px;
+      }
+      .muted {
+        color: #5a6478;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <h1>Hobby-Selbstreflexion</h1>
+        <p class="muted">
+          Diese Ansicht macht die Definitionsanalyse visuell greifbar. Die Wordcloud basiert auf
+          <code>Hobby-Definitionen.txt</code> und zeigt, welche Begriffe in den Definitionen am häufigsten vorkommen.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Wordcloud der Hobby-Definitionen</h2>
+        <img class="wordcloud" src="/wordcloud.png" alt="Wordcloud aus Hobby-Definitionen" />
+      </section>
+
+      <section class="card">
+        <h2>Top-Wörter (aktuell)</h2>
+        <ul class="top-words">
+          {% for word, count in top_words %}
+            <li><strong>{{ word }}</strong>: {{ count }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

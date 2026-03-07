@@ -16,9 +16,12 @@ to see the JSON output.
 
 from __future__ import annotations
 
+from io import BytesIO
+
 from flask import Flask, request, jsonify, render_template
 
 from models import db, Hobby, Attribute, HobbyAttribute, seed_data
+from wordcloud_service import generate_wordcloud_image, get_top_words
 
 
 def create_app() -> Flask:
@@ -88,7 +91,16 @@ def create_app() -> Flask:
     @app.route("/", methods=["GET"])
     def index():
         """Render a simple landing page for end users."""
-        return render_template("index.html")
+        return render_template("index.html", top_words=get_top_words(top_n=12))
+
+    @app.route("/wordcloud.png", methods=["GET"])
+    def wordcloud_png():
+        """Generate and return the hobby definitions word cloud as PNG."""
+        image = generate_wordcloud_image()
+        buffer = BytesIO()
+        image.save(buffer, format="PNG")
+        buffer.seek(0)
+        return app.response_class(buffer.getvalue(), mimetype="image/png")
 
     @app.route("/attributes", methods=["GET"])
     def list_attributes():
