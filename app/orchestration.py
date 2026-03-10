@@ -53,8 +53,13 @@ class AppOrchestrator:
             },
             "attributes": attributes,
             "qualification": {
-                "label": qualification.label,
+                "status": qualification.status,
+                "label": qualification.status,
                 "preliminary": qualification.preliminary,
+                "score": qualification.score,
+                "support_strength": qualification.support_strength,
+                "supporting_attributes": qualification.supporting_attributes,
+                "missing_or_weak_attributes": qualification.missing_or_weak_attributes,
             },
             "explanation": qualification.explanation,
         }

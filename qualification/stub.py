@@ -1,4 +1,4 @@
-"""No-op qualification stub for Phase 1 transition scaffolding."""
+"""No-op qualification stub for transition scaffolding."""
 
 from __future__ import annotations
 
@@ -13,7 +13,11 @@ class StubQualificationAdapter(QualificationPort):
 
     def qualify(self, matched: bool, attributes: dict[str, int]) -> QualificationResult:
         return QualificationResult(
-            label="unknown_activity",
+            status="insufficient_evidence",
             preliminary=True,
-            explanation="phase1_stub",
+            score=0.0,
+            support_strength="weak",
+            supporting_attributes=[],
+            missing_or_weak_attributes=["freiwillig", "freizeit", "regelmäßig"],
+            explanation="phase_stub: no qualification logic attached",
         )

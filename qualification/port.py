@@ -1,4 +1,4 @@
-"""Port definitions for preliminary hobby qualification."""
+"""Port definitions for hobby qualification."""
 
 from __future__ import annotations
 
@@ -6,24 +6,30 @@ from dataclasses import dataclass
 from typing import Literal, Protocol
 
 
-QualificationLabel = Literal[
-    "known_activity",
-    "unknown_activity",
-    "potential_hobby_candidate",
+QualificationStatus = Literal[
+    "qualified_hobby",
+    "potential_hobby",
+    "insufficient_evidence",
+    "unlikely_hobby",
 ]
+SupportStrength = Literal["strong", "moderate", "limited", "weak"]
 
 
 @dataclass(frozen=True)
 class QualificationResult:
-    """Preliminary and explainable qualification result."""
+    """Explainable qualification result based on deterministic rules."""
 
-    label: QualificationLabel
+    status: QualificationStatus
     preliminary: bool
+    score: float
+    support_strength: SupportStrength
+    supporting_attributes: list[str]
+    missing_or_weak_attributes: list[str]
     explanation: str
 
 
 class QualificationPort(Protocol):
-    """Contract for preliminary qualification in Slice 1."""
+    """Contract for explainable and deterministic qualification."""
 
     def qualify(self, matched: bool, attributes: dict[str, int]) -> QualificationResult:
-        """Return preliminary result based on match and attribute availability."""
+        """Return explainable qualification from match state and activity attributes."""
