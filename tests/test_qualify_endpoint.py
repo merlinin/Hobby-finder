@@ -65,6 +65,39 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self.assertEqual(payload["match"]["activity_name"], "Radfahren")
         self._assert_regression_fields(payload, "qualified_hobby")
 
+
+    def test_qualify_capitalization_and_whitespace_variation(self):
+        response = self.client.post("/qualify", json={"activity": "   kLeTtErN   "})
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertTrue(payload["match"]["matched"])
+        self.assertEqual(payload["match"]["activity_name"], "Klettern")
+        self.assertEqual(payload["match"]["match_type"], "exact_name")
+
+    def test_qualify_hyphen_and_punctuation_variation(self):
+        response = self.client.post("/qualify", json={"activity": "3D-Druck!"})
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertTrue(payload["match"]["matched"])
+        self.assertEqual(payload["match"]["activity_name"], "3D-Druck")
+
+    def test_qualify_simple_phrase_variants(self):
+        phrase_cases = {
+            "klettern gehen": "Klettern",
+            "musik machen": "Musik machen",
+            "fahrrad fahren": "Radfahren",
+        }
+
+        for user_input, expected_activity in phrase_cases.items():
+            with self.subTest(user_input=user_input):
+                response = self.client.post("/qualify", json={"activity": user_input})
+                self.assertEqual(response.status_code, 200)
+                payload = response.get_json()
+                self.assertTrue(payload["match"]["matched"])
+                self.assertEqual(payload["match"]["activity_name"], expected_activity)
+
     def test_qualify_unknown_activity(self):
         response = self.client.post("/qualify", json={"activity": "Space-Bongo"})
 
