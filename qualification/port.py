@@ -1,24 +1,29 @@
-"""Port definitions for future hobby-qualification integration.
-
-Phase 1 / Slice 5: structural contract only, no runtime wiring.
-"""
+"""Port definitions for preliminary hobby qualification."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Protocol
+from typing import Literal, Protocol
+
+
+QualificationLabel = Literal[
+    "known_activity",
+    "unknown_activity",
+    "potential_hobby_candidate",
+]
 
 
 @dataclass(frozen=True)
 class QualificationResult:
-    """Minimal qualification result shape for future phases."""
+    """Preliminary and explainable qualification result."""
 
-    status: str
-    rationale: str
+    label: QualificationLabel
+    preliminary: bool
+    explanation: str
 
 
 class QualificationPort(Protocol):
-    """Contract for classifying whether an activity qualifies as a hobby."""
+    """Contract for preliminary qualification in Slice 1."""
 
-    def qualify(self, activity_name: str, user_context: dict[str, object]) -> QualificationResult:
-        """Return hobby-status decision metadata for an activity and user context."""
+    def qualify(self, matched: bool, attributes: dict[str, int]) -> QualificationResult:
+        """Return preliminary result based on match and attribute availability."""

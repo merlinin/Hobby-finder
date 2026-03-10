@@ -1,9 +1,12 @@
-"""Qualification package scaffold for hobby status decisions.
+"""Qualification package for preliminary hobby decisions."""
 
-Phase 1 / Slice 5: port + stub prepared without runtime integration.
-"""
-
+from .adapter import PreliminaryQualificationAdapter
 from .port import QualificationPort, QualificationResult
 from .stub import StubQualificationAdapter
 
-__all__ = ["QualificationPort", "QualificationResult", "StubQualificationAdapter"]
+__all__ = [
+    "PreliminaryQualificationAdapter",
+    "QualificationPort",
+    "QualificationResult",
+    "StubQualificationAdapter",
+]
