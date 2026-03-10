@@ -16,6 +16,28 @@ class AppRoutesTestCase(unittest.TestCase):
         self.assertIn("Wordcloud", body)
         self.assertIn("/wordcloud.png", body)
 
+
+    def test_hobbies_endpoint_returns_expected_structure(self):
+        response = self.client.get("/hobbies")
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertIsInstance(payload, list)
+        self.assertGreater(len(payload), 0)
+        first = payload[0]
+        self.assertIn("id", first)
+        self.assertIn("name", first)
+        self.assertIn("category", first)
+        self.assertIn("notes", first)
+        self.assertIn("attributes", first)
+
+    def test_attributes_endpoint_returns_sorted_names(self):
+        response = self.client.get("/attributes")
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertIsInstance(payload, list)
+        names = [item["name"] for item in payload]
+        self.assertEqual(names, sorted(names))
+
     def test_wordcloud_png_endpoint_returns_image(self):
         response = self.client.get("/wordcloud.png")
         self.assertEqual(response.status_code, 200)

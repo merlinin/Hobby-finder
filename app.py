@@ -21,7 +21,7 @@ from io import BytesIO
 from flask import Flask, request, jsonify, render_template
 
 from app.orchestration import AppOrchestrator
-from models import db, Hobby, Attribute, HobbyAttribute, seed_data
+from models import db, seed_data
 
 
 def create_app() -> Flask:
@@ -52,12 +52,7 @@ def create_app() -> Flask:
         search_text = request.args.get("q", type=str) or ""
         attribute_filter = request.args.get("attribute", type=str)
 
-        # Build base query
-        query = Hobby.query
-        if search_text:
-            # Case‑insensitive search on hobby name
-            query = query.filter(Hobby.name.ilike(f"%{search_text}%"))
-        hobbies = query.all()
+        hobbies = orchestrator.list_hobbies(search_text=search_text)
 
         # Assemble result structure
         results = []
@@ -107,7 +102,7 @@ def create_app() -> Flask:
     @app.route("/attributes", methods=["GET"])
     def list_attributes():
         """Return a list of all defined attributes with descriptions."""
-        attrs = Attribute.query.order_by(Attribute.name).all()
+        attrs = orchestrator.list_attributes()
         return jsonify([
             {
                 "id": attr.id,
