@@ -20,8 +20,8 @@ from io import BytesIO
 
 from flask import Flask, request, jsonify, render_template
 
+from app.orchestration import AppOrchestrator
 from models import db, Hobby, Attribute, HobbyAttribute, seed_data
-from wordcloud_service import generate_wordcloud_image, get_top_words
 
 
 def create_app() -> Flask:
@@ -37,6 +37,8 @@ def create_app() -> Flask:
     with app.app_context():
         db.create_all()
         seed_data()
+
+    orchestrator = AppOrchestrator()
 
     @app.route("/hobbies", methods=["GET"])
     def get_hobbies():
@@ -91,12 +93,12 @@ def create_app() -> Flask:
     @app.route("/", methods=["GET"])
     def index():
         """Render a simple landing page for end users."""
-        return render_template("index.html", top_words=get_top_words(top_n=12))
+        return render_template("index.html", **orchestrator.get_index_context())
 
     @app.route("/wordcloud.png", methods=["GET"])
     def wordcloud_png():
         """Generate and return the hobby definitions word cloud as PNG."""
-        image = generate_wordcloud_image()
+        image = orchestrator.generate_wordcloud_image()
         buffer = BytesIO()
         image.save(buffer, format="PNG")
         buffer.seek(0)
