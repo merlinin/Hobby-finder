@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hobby-Selbstreflexion</title>
+    <title>Hobby Finder – Activity Qualification Demo</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
         color: #1b1f2a;
       }
       .container {
-        max-width: 1000px;
+        max-width: 760px;
         margin: 0 auto;
         padding: 24px;
       }
@@ -21,57 +21,143 @@
         border-radius: 12px;
         padding: 16px;
         box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-        margin-bottom: 16px;
       }
-      h1, h2 {
+      h1, h2, h3 {
         margin-top: 0;
-      }
-      .wordcloud {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        border: 1px solid #dde3f0;
-      }
-      .top-words {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-        gap: 8px;
-        list-style: none;
-        padding: 0;
-      }
-      .top-words li {
-        background: #eef3ff;
-        border-radius: 8px;
-        padding: 8px 10px;
       }
       .muted {
         color: #5a6478;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      input[type="text"] {
+        flex: 1;
+        min-width: 240px;
+        padding: 10px;
+        border: 1px solid #ccd5e5;
+        border-radius: 8px;
+      }
+      button {
+        border: none;
+        border-radius: 8px;
+        padding: 10px 14px;
+        background: #2f62ff;
+        color: white;
+        cursor: pointer;
+      }
+      .sample-btn {
+        background: #eef3ff;
+        color: #2042a5;
+      }
+      .result {
+        margin-top: 16px;
+        background: #f8faff;
+        border: 1px solid #dde3f0;
+        border-radius: 8px;
+        padding: 12px;
+      }
+      pre {
+        margin: 8px 0 0;
+        white-space: pre-wrap;
       }
     </style>
   </head>
   <body>
     <main class="container">
       <section class="card">
-        <h1>Hobby-Selbstreflexion</h1>
-        <p class="muted">
-          Diese Ansicht macht die Definitionsanalyse visuell greifbar. Die Wordcloud basiert auf
-          <code>Hobby-Definitionen.txt</code> und zeigt, welche Begriffe in den Definitionen am häufigsten vorkommen.
-        </p>
-      </section>
+        <h1>Hobby Finder – Activity Qualification Demo</h1>
+        <p class="muted">Welche Tätigkeit möchtest du prüfen?</p>
 
-      <section class="card">
-        <h2>Wordcloud der Hobby-Definitionen</h2>
-        <img class="wordcloud" src="/wordcloud.png" alt="Wordcloud aus Hobby-Definitionen" />
-      </section>
+        <div class="row" style="margin-bottom: 8px;">
+          <input id="activity-input" type="text" placeholder="z. B. bouldern" />
+          <button id="qualify-btn" type="button">Prüfen</button>
+        </div>
 
-      <section class="card">
-        <h2>Top-Wörter (aktuell)</h2>
-        <ul class="top-words">
-          {% for word, count in top_words %}
-            <li><strong>{{ word }}</strong>: {{ count }}</li>
-          {% endfor %}
-        </ul>
+        <div class="row" style="margin-bottom: 12px;">
+          <button class="sample-btn" type="button" data-sample="bouldern">bouldern</button>
+          <button class="sample-btn" type="button" data-sample="3d druck">3d druck</button>
+          <button class="sample-btn" type="button" data-sample="briefmarkensammeln">briefmarkensammeln</button>
+        </div>
+
+        <div id="result" class="result" hidden>
+          <h3>Ergebnis</h3>
+          <div><strong>Erkannte Aktivität:</strong> <span id="recognized-activity">-</span></div>
+          <div><strong>Attribute:</strong> <span id="attributes">-</span></div>
+          <div><strong>Qualification Status:</strong> <span id="qualification-status">-</span></div>
+          <div><strong>Erklärung:</strong></div>
+          <pre id="explanation">-</pre>
+        </div>
       </section>
     </main>
+
+    <script>
+      const inputEl = document.getElementById("activity-input");
+      const qualifyBtn = document.getElementById("qualify-btn");
+      const resultEl = document.getElementById("result");
+
+      const recognizedEl = document.getElementById("recognized-activity");
+      const attributesEl = document.getElementById("attributes");
+      const statusEl = document.getElementById("qualification-status");
+      const explanationEl = document.getElementById("explanation");
+
+      function renderResult(payload) {
+        const match = payload.match || {};
+        const qualification = payload.qualification || {};
+        const attributes = payload.attributes || {};
+
+        recognizedEl.textContent = match.activity_name || "Nicht erkannt";
+        const attrEntries = Object.entries(attributes);
+        attributesEl.textContent = attrEntries.length
+          ? attrEntries.map(([key, value]) => `${key}: ${value}`).join(", ")
+          : "Keine";
+        statusEl.textContent = qualification.label || "-";
+        explanationEl.textContent = payload.explanation || "-";
+
+        resultEl.hidden = false;
+      }
+
+      async function qualifyActivity() {
+        const activity = inputEl.value.trim();
+        if (!activity) {
+          return;
+        }
+
+        const response = await fetch("/qualify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ activity }),
+        });
+
+        const payload = await response.json();
+
+        if (!response.ok) {
+          recognizedEl.textContent = "Fehler";
+          attributesEl.textContent = "-";
+          statusEl.textContent = `HTTP ${response.status}`;
+          explanationEl.textContent = payload.error || "Unbekannter Fehler.";
+          resultEl.hidden = false;
+          return;
+        }
+
+        renderResult(payload);
+      }
+
+      qualifyBtn.addEventListener("click", qualifyActivity);
+      inputEl.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          qualifyActivity();
+        }
+      });
+
+      document.querySelectorAll("[data-sample]").forEach((button) => {
+        button.addEventListener("click", () => {
+          inputEl.value = button.dataset.sample;
+          inputEl.focus();
+        });
+      });
+    </script>
   </body>
 </html>

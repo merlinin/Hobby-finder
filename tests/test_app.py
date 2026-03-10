@@ -9,12 +9,13 @@ class AppRoutesTestCase(unittest.TestCase):
         app.config["TESTING"] = True
         self.client = app.test_client()
 
-    def test_index_page_renders_wordcloud_section(self):
+    def test_index_page_renders_qualification_demo(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         body = response.get_data(as_text=True)
-        self.assertIn("Wordcloud", body)
-        self.assertIn("/wordcloud.png", body)
+        self.assertIn("Hobby Finder – Activity Qualification Demo", body)
+        self.assertIn("Welche Tätigkeit möchtest du prüfen?", body)
+        self.assertIn("/qualify", body)
 
 
     def test_hobbies_endpoint_returns_expected_structure(self):
