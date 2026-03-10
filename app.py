@@ -18,8 +18,9 @@ from __future__ import annotations
 
 from io import BytesIO
 
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 
+from app.contracts import QualificationInput
 from app.orchestration import AppOrchestrator
 from models import db, seed_data
 
@@ -27,13 +28,11 @@ from models import db, seed_data
 def create_app() -> Flask:
     """Factory to create and configure the Flask application instance."""
     app = Flask(__name__)
-    # Configure the database URI. SQLite database stored locally.
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///hobbies.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
 
-    # Create tables and seed data during app initialization.
     with app.app_context():
         db.create_all()
         seed_data()
@@ -42,22 +41,13 @@ def create_app() -> Flask:
 
     @app.route("/hobbies", methods=["GET"])
     def get_hobbies():
-        """Return a list of hobbies, optionally filtered by search or attribute.
-
-        Query parameters:
-        ``q`` - free‑text search for hobby names.
-        ``attribute`` - name of an attribute to filter by (must match
-        an existing attribute name).
-        """
         search_text = request.args.get("q", type=str) or ""
         attribute_filter = request.args.get("attribute", type=str)
 
         hobbies = orchestrator.list_hobbies(search_text=search_text)
 
-        # Assemble result structure
         results = []
         for hobby in hobbies:
-            # Convert each hobby to a dictionary including its attributes
             hobby_data = {
                 "id": hobby.id,
                 "name": hobby.name,
@@ -74,8 +64,6 @@ def create_app() -> Flask:
             }
             results.append(hobby_data)
 
-        # If an attribute filter is given, filter results to only include
-        # hobbies that have at least one attribute matching the filter.
         if attribute_filter:
             results = [
                 hobby
@@ -87,12 +75,10 @@ def create_app() -> Flask:
 
     @app.route("/", methods=["GET"])
     def index():
-        """Render a simple landing page for end users."""
         return render_template("index.html", **orchestrator.get_index_context())
 
     @app.route("/wordcloud.png", methods=["GET"])
     def wordcloud_png():
-        """Generate and return the hobby definitions word cloud as PNG."""
         image = orchestrator.generate_wordcloud_image()
         buffer = BytesIO()
         image.save(buffer, format="PNG")
@@ -101,7 +87,6 @@ def create_app() -> Flask:
 
     @app.route("/attributes", methods=["GET"])
     def list_attributes():
-        """Return a list of all defined attributes with descriptions."""
         attrs = orchestrator.list_attributes()
         return jsonify([
             {
@@ -113,11 +98,22 @@ def create_app() -> Flask:
             for attr in attrs
         ])
 
+    @app.route("/qualify", methods=["POST"])
+    def qualify_activity():
+        payload = request.get_json(silent=True)
+        if not isinstance(payload, dict) or not isinstance(payload.get("activity"), str):
+            return jsonify({"error": "Payload must contain string field 'activity'."}), 400
+
+        activity = payload["activity"].strip()
+        if not activity:
+            return jsonify({"error": "Field 'activity' must not be empty."}), 400
+
+        result = orchestrator.qualify_activity(QualificationInput(activity=activity))
+        return jsonify(result)
+
     return app
 
 
 if __name__ == "__main__":
-    # Only run the server if this script is executed directly.
     app = create_app()
-    # Run the development server with debug mode enabled for hot reloading.
     app.run(debug=True)
