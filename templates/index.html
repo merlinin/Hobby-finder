@@ -78,7 +78,9 @@
 
         <div class="row" style="margin-bottom: 12px;">
           <button class="sample-btn" type="button" data-sample="bouldern">bouldern</button>
-          <button class="sample-btn" type="button" data-sample="3d druck">3d druck</button>
+          <button class="sample-btn" type="button" data-sample="mountainbike">mountainbike</button>
+          <button class="sample-btn" type="button" data-sample="gitarre">gitarre</button>
+          <button class="sample-btn" type="button" data-sample="fotografie">fotografie</button>
           <button class="sample-btn" type="button" data-sample="briefmarkensammeln">briefmarkensammeln</button>
         </div>
 
@@ -86,7 +88,7 @@
           <h3>Ergebnis</h3>
           <div><strong>Erkannte Aktivität:</strong> <span id="recognized-activity">-</span></div>
           <div><strong>Attribute:</strong> <span id="attributes">-</span></div>
-          <div><strong>Qualification Status:</strong> <span id="qualification-status">-</span></div>
+          <div><strong>Vorläufige Einordnung:</strong> <span id="qualification-status">-</span></div>
           <div><strong>Erklärung:</strong></div>
           <pre id="explanation">-</pre>
         </div>
@@ -111,9 +113,15 @@
         recognizedEl.textContent = match.activity_name || "Nicht erkannt";
         const attrEntries = Object.entries(attributes);
         attributesEl.textContent = attrEntries.length
-          ? attrEntries.map(([key, value]) => `${key}: ${value}`).join(", ")
-          : "Keine";
-        statusEl.textContent = qualification.label || "-";
+          ? attrEntries.map(([key, value]) => `${key} (${value}/3)`).join(", ")
+          : "Keine hinterlegt";
+
+        const statusLabels = {
+          potential_hobby_candidate: "Potenzieller Hobby-Kandidat",
+          known_activity: "Bekannte Aktivität",
+          unknown_activity: "Unbekannte Aktivität",
+        };
+        statusEl.textContent = statusLabels[qualification.label] || qualification.label || "-";
         explanationEl.textContent = payload.explanation || "-";
 
         resultEl.hidden = false;

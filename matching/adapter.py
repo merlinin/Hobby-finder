@@ -18,6 +18,17 @@ class MatchingAdapter(MatchingPort):
     alias_map: dict[str, str] = field(
         default_factory=lambda: {
             "bouldern": "Klettern",
+            "mountainbike": "Radfahren",
+            "mountainbiken": "Radfahren",
+            "gitarre": "Gitarre spielen",
+            "musik machen": "Musik machen",
+            "3d druck": "3D-Druck",
+            "3d-druck": "3D-Druck",
+            "zeichnen": "Zeichnen",
+            "kunst": "Zeichnen",
+            "autos reparieren": "Autos reparieren",
+            "autoschrauben": "Autos reparieren",
+            "gaertnern": "Gärtnern",
         }
     )
 
