@@ -59,6 +59,25 @@
         border-radius: 8px;
         padding: 12px;
       }
+      .result-grid {
+        display: grid;
+        gap: 8px;
+      }
+      .status-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #e7edff;
+        color: #1e3f9a;
+        font-size: 0.9rem;
+      }
+      ul {
+        margin: 6px 0 0;
+        padding-left: 20px;
+      }
+      .list-empty {
+        margin-top: 6px;
+      }
       pre {
         margin: 8px 0 0;
         white-space: pre-wrap;
@@ -86,11 +105,26 @@
 
         <div id="result" class="result" hidden>
           <h3>Ergebnis</h3>
-          <div><strong>Erkannte Aktivität:</strong> <span id="recognized-activity">-</span></div>
-          <div><strong>Attribute:</strong> <span id="attributes">-</span></div>
-          <div><strong>Vorläufige Einordnung:</strong> <span id="qualification-status">-</span></div>
-          <div><strong>Erklärung:</strong></div>
-          <pre id="explanation">-</pre>
+          <div class="result-grid">
+            <div><strong>Erkannte Aktivität:</strong> <span id="recognized-activity">-</span></div>
+            <div>
+              <strong>Status:</strong>
+              <span id="qualification-status" class="status-badge">-</span>
+            </div>
+            <div><strong>Score:</strong> <span id="qualification-score">-</span></div>
+
+            <div>
+              <strong>Supporting attributes:</strong>
+              <ul id="supporting-attributes" hidden></ul>
+              <div id="supporting-empty" class="muted list-empty">Keine vorhanden</div>
+            </div>
+
+            <div>
+              <strong>Missing or weak attributes:</strong>
+              <ul id="missing-attributes" hidden></ul>
+              <div id="missing-empty" class="muted list-empty">Keine vorhanden</div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -101,28 +135,45 @@
       const resultEl = document.getElementById("result");
 
       const recognizedEl = document.getElementById("recognized-activity");
-      const attributesEl = document.getElementById("attributes");
       const statusEl = document.getElementById("qualification-status");
-      const explanationEl = document.getElementById("explanation");
+      const scoreEl = document.getElementById("qualification-score");
+      const supportingListEl = document.getElementById("supporting-attributes");
+      const supportingEmptyEl = document.getElementById("supporting-empty");
+      const missingListEl = document.getElementById("missing-attributes");
+      const missingEmptyEl = document.getElementById("missing-empty");
+
+      function renderList(listEl, emptyEl, items) {
+        listEl.innerHTML = "";
+        if (!items.length) {
+          listEl.hidden = true;
+          emptyEl.hidden = false;
+          return;
+        }
+
+        items.forEach((item) => {
+          const entry = document.createElement("li");
+          entry.textContent = item;
+          listEl.appendChild(entry);
+        });
+
+        listEl.hidden = false;
+        emptyEl.hidden = true;
+      }
 
       function renderResult(payload) {
         const match = payload.match || {};
         const qualification = payload.qualification || {};
-        const attributes = payload.attributes || {};
 
         recognizedEl.textContent = match.activity_name || "Nicht erkannt";
-        const attrEntries = Object.entries(attributes);
-        attributesEl.textContent = attrEntries.length
-          ? attrEntries.map(([key, value]) => `${key} (${value}/3)`).join(", ")
-          : "Keine hinterlegt";
 
-        const statusLabels = {
-          potential_hobby_candidate: "Potenzieller Hobby-Kandidat",
-          known_activity: "Bekannte Aktivität",
-          unknown_activity: "Unbekannte Aktivität",
-        };
-        statusEl.textContent = statusLabels[qualification.label] || qualification.label || "-";
-        explanationEl.textContent = payload.explanation || "-";
+        statusEl.textContent = qualification.status || "-";
+        scoreEl.textContent = Number.isFinite(qualification.score) ? qualification.score : "-";
+
+        const supportingAttributes = qualification.supporting_attributes || [];
+        const missingAttributes = qualification.missing_or_weak_attributes || [];
+
+        renderList(supportingListEl, supportingEmptyEl, supportingAttributes);
+        renderList(missingListEl, missingEmptyEl, missingAttributes);
 
         resultEl.hidden = false;
       }
@@ -143,9 +194,10 @@
 
         if (!response.ok) {
           recognizedEl.textContent = "Fehler";
-          attributesEl.textContent = "-";
           statusEl.textContent = `HTTP ${response.status}`;
-          explanationEl.textContent = payload.error || "Unbekannter Fehler.";
+          scoreEl.textContent = "-";
+          renderList(supportingListEl, supportingEmptyEl, []);
+          renderList(missingListEl, missingEmptyEl, []);
           resultEl.hidden = false;
           return;
         }
