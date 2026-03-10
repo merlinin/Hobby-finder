@@ -41,6 +41,30 @@ class MatchingAdapterTestCase(unittest.TestCase):
         self.assertTrue(result.matched)
         self.assertEqual(result.activity_name, "Klettern")
 
+
+    def test_hyphen_and_punctuation_variations_are_normalized(self):
+        result = self.adapter.match_activity(" 3D-Druck! ", self.canonical_names + ["3D-Druck"])
+
+        self.assertTrue(result.matched)
+        self.assertEqual(result.activity_name, "3D-Druck")
+        self.assertEqual(result.match_type, "exact_name")
+
+    def test_simple_phrase_variants_are_simplified(self):
+        canonical_names = self.canonical_names + ["Musik machen"]
+
+        klettern = self.adapter.match_activity("klettern gehen", canonical_names)
+        musik = self.adapter.match_activity("musik machen", canonical_names)
+        fahrrad = self.adapter.match_activity("fahrrad fahren", canonical_names)
+
+        self.assertTrue(klettern.matched)
+        self.assertEqual(klettern.activity_name, "Klettern")
+
+        self.assertTrue(musik.matched)
+        self.assertEqual(musik.activity_name, "Musik machen")
+
+        self.assertTrue(fahrrad.matched)
+        self.assertEqual(fahrrad.activity_name, "Radfahren")
+
     def test_unknown_activity_returns_no_match(self):
         result = self.adapter.match_activity("stricken", self.canonical_names)
 
