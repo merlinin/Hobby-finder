@@ -25,6 +25,16 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self.assertEqual(payload["match"]["match_type"], "exact_alias")
         self.assertEqual(payload["match"]["activity_name"], "Klettern")
 
+
+    def test_qualify_new_alias_activity(self):
+        response = self.client.post("/qualify", json={"activity": "mountainbike"})
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertEqual(payload["match"]["match_type"], "exact_alias")
+        self.assertEqual(payload["match"]["activity_name"], "Radfahren")
+        self.assertEqual(payload["qualification"]["label"], "potential_hobby_candidate")
+
     def test_qualify_unknown_activity(self):
         response = self.client.post("/qualify", json={"activity": "Space-Bongo"})
 

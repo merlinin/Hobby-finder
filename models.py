@@ -118,72 +118,155 @@ def seed_data() -> None:
             db.session.add(attr)
         db.session.commit()
 
-    if not Hobby.query.first():
-        # Sample hobbies drawn from the user's brainstorming list
-        sample_hobbies = [
-            Hobby(name="Klettern", category="Sport", notes="Bouldern und Felsklettern"),
-            Hobby(name="3D-Druck", category="Technik", notes="Additive Fertigung"),
-            Hobby(name="DJ / Synth", category="Musik", notes="Elektronische Musik und Sampling"),
-            Hobby(name="Autoschrauben", category="Technik", notes="Auto reparieren und Tuning"),
-            Hobby(name="Programmieren", category="Technik", notes="Softwareentwicklung"),
-        ]
-        db.session.add_all(sample_hobbies)
-        db.session.commit()
+    # Ensure sample hobbies exist (idempotent insert by name)
+    sample_hobbies = [
+        Hobby(name="Klettern", category="Sport", notes="Bouldern und Felsklettern"),
+        Hobby(name="3D-Druck", category="Technik", notes="Additive Fertigung"),
+        Hobby(name="DJ / Synth", category="Musik", notes="Elektronische Musik und Sampling"),
+        Hobby(name="Autos reparieren", category="Technik", notes="Auto reparieren und Tuning"),
+        Hobby(name="Programmieren", category="Technik", notes="Softwareentwicklung"),
+        Hobby(name="Reiten", category="Sport", notes="Umgang mit Pferden und Ausritte"),
+        Hobby(name="Fotografie", category="Kreativ", notes="Fotos aufnehmen und bearbeiten"),
+        Hobby(name="Gitarre spielen", category="Musik", notes="Instrument üben und Songs spielen"),
+        Hobby(name="Kochen", category="Kreativ", notes="Gerichte planen und zubereiten"),
+        Hobby(name="Zeichnen", category="Kreativ", notes="Skizzen, Illustration und Kunst"),
+        Hobby(name="Musik machen", category="Musik", notes="Aktives Musizieren mit Instrument oder Stimme"),
+        Hobby(name="Modellbau", category="Technik", notes="Modelle bauen und verfeinern"),
+        Hobby(name="Gärtnern", category="Natur", notes="Pflanzen pflegen und Garten gestalten"),
+        Hobby(name="Radfahren", category="Sport", notes="Freizeitfahrten, Touren und Training"),
+    ]
+    existing_hobbies = {h.name for h in Hobby.query.all()}
+    for hobby in sample_hobbies:
+        if hobby.name not in existing_hobbies:
+            db.session.add(hobby)
+    db.session.commit()
 
-        # Helper to assign attribute values
-        def assign(hobby_name: str, attr_name: str, value: int) -> None:
-            hobby = Hobby.query.filter_by(name=hobby_name).first()
-            attr = Attribute.query.filter_by(name=attr_name).first()
-            if hobby and attr:
-                db.session.add(
-                    HobbyAttribute(hobby_id=hobby.id, attribute_id=attr.id, value=value)
-                )
+    # Helper to assign attribute values
+    def assign(hobby_name: str, attr_name: str, value: int) -> None:
+        hobby = Hobby.query.filter_by(name=hobby_name).first()
+        attr = Attribute.query.filter_by(name=attr_name).first()
+        if hobby and attr:
+            existing = HobbyAttribute.query.filter_by(hobby_id=hobby.id, attribute_id=attr.id).first()
+            if existing is None:
+                db.session.add(HobbyAttribute(hobby_id=hobby.id, attribute_id=attr.id, value=value))
 
-        # Attribute assignments for each hobby. These numbers are example
-        # values and can be adjusted based on personal perception.
-        assignments = {
-            "Klettern": {
-                "freiwillig": 3,
-                "Freizeit": 3,
-                "regelmäßig": 1,
-                "körperlich": 3,
-                "drinnen": 2,
-                "kreativ": 1,
-            },
-            "3D-Druck": {
-                "freiwillig": 3,
-                "Freizeit": 3,
-                "regelmäßig": 2,
-                "körperlich": 1,
-                "drinnen": 3,
-                "kreativ": 2,
-            },
-            "DJ / Synth": {
-                "freiwillig": 3,
-                "Freizeit": 3,
-                "regelmäßig": 2,
-                "körperlich": 1,
-                "drinnen": 3,
-                "kreativ": 3,
-            },
-            "Autoschrauben": {
-                "freiwillig": 3,
-                "Freizeit": 3,
-                "regelmäßig": 2,
-                "körperlich": 2,
-                "drinnen": 2,
-                "kreativ": 2,
-            },
-            "Programmieren": {
-                "freiwillig": 3,
-                "Freizeit": 3,
-                "regelmäßig": 3,
-                "körperlich": 1,
-                "drinnen": 3,
-                "kreativ": 3,
-            },
-        }
-        for hobby_name, attrs in assignments.items():
-            for attr_name, value in attrs.items():
-                assign(hobby_name, attr_name, value)
-        db.session.commit()
+    # Attribute assignments for each hobby. These numbers are example
+    # values and can be adjusted based on personal perception.
+    assignments = {
+        "Klettern": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 1,
+            "körperlich": 3,
+            "drinnen": 2,
+            "kreativ": 1,
+        },
+        "3D-Druck": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 1,
+            "drinnen": 3,
+            "kreativ": 2,
+        },
+        "DJ / Synth": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 1,
+            "drinnen": 3,
+            "kreativ": 3,
+        },
+        "Autos reparieren": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 2,
+            "drinnen": 2,
+            "kreativ": 2,
+        },
+        "Programmieren": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 3,
+            "körperlich": 1,
+            "drinnen": 3,
+            "kreativ": 3,
+        },
+        "Reiten": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 3,
+            "drinnen": 1,
+            "kreativ": 1,
+        },
+        "Fotografie": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 1,
+            "drinnen": 2,
+            "kreativ": 3,
+        },
+        "Gitarre spielen": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 1,
+            "drinnen": 3,
+            "kreativ": 3,
+        },
+        "Kochen": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 3,
+            "körperlich": 1,
+            "drinnen": 3,
+            "kreativ": 2,
+        },
+        "Zeichnen": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 1,
+            "drinnen": 3,
+            "kreativ": 3,
+        },
+        "Musik machen": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 1,
+            "drinnen": 3,
+            "kreativ": 3,
+        },
+        "Modellbau": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 1,
+            "drinnen": 3,
+            "kreativ": 3,
+        },
+        "Gärtnern": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 2,
+            "drinnen": 1,
+            "kreativ": 2,
+        },
+        "Radfahren": {
+            "freiwillig": 3,
+            "Freizeit": 3,
+            "regelmäßig": 2,
+            "körperlich": 3,
+            "drinnen": 1,
+            "kreativ": 1,
+        },
+    }
+    for hobby_name, attrs in assignments.items():
+        for attr_name, value in attrs.items():
+            assign(hobby_name, attr_name, value)
+    db.session.commit()

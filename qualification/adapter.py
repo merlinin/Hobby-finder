@@ -16,7 +16,7 @@ class PreliminaryQualificationAdapter(QualificationPort):
             return QualificationResult(
                 label="unknown_activity",
                 preliminary=True,
-                explanation="Die Aktivität konnte in der Knowledge Base nicht erkannt werden.",
+                explanation="Die eingegebene Aktivität konnte der Wissensbasis noch nicht eindeutig zugeordnet werden. Das Ergebnis bleibt daher vorläufig und ist keine persönliche Hobby-Bewertung.",
             )
 
         if not attributes:
@@ -24,7 +24,7 @@ class PreliminaryQualificationAdapter(QualificationPort):
                 label="known_activity",
                 preliminary=True,
                 explanation=(
-                    "Die Aktivität wurde erkannt, es sind aber aktuell keine Attribute hinterlegt."
+                    "Die Aktivität wurde erkannt. Aktuell sind dafür jedoch noch keine typischen Eigenschaften hinterlegt, daher ist die Einschätzung nur vorläufig und keine persönliche Hobby-Bewertung."
                 ),
             )
 
@@ -32,7 +32,7 @@ class PreliminaryQualificationAdapter(QualificationPort):
             label="potential_hobby_candidate",
             preliminary=True,
             explanation=(
-                "Die Aktivität wurde erkannt und Attribute wurden geladen. "
-                "Dies ist eine vorläufige, nicht finale Hobby-Einordnung."
+                "Die Aktivität wurde erkannt und besitzt mehrere typische Eigenschaften eines Hobbys. "
+                "Die Einschätzung ist vorläufig und ersetzt keine persönliche Hobby-Bewertung."
             ),
         )
