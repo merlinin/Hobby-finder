@@ -54,7 +54,7 @@ class QualifyEndpointTestCase(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         payload = response.get_json()
-        self.assertEqual(payload["match"]["match_type"], "exact_alias")
+        self.assertEqual(payload["match"]["match_type"], "alias_match")
         self.assertEqual(payload["match"]["activity_name"], "Klettern")
         self._assert_regression_fields(payload, "qualified_hobby")
 
@@ -63,7 +63,7 @@ class QualifyEndpointTestCase(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         payload = response.get_json()
-        self.assertEqual(payload["match"]["match_type"], "exact_alias")
+        self.assertEqual(payload["match"]["match_type"], "alias_match")
         self.assertEqual(payload["match"]["activity_name"], "Radfahren")
         self._assert_regression_fields(payload, "qualified_hobby")
 
@@ -75,7 +75,8 @@ class QualifyEndpointTestCase(unittest.TestCase):
         payload = response.get_json()
         self.assertTrue(payload["match"]["matched"])
         self.assertEqual(payload["match"]["activity_name"], "Klettern")
-        self.assertEqual(payload["match"]["match_type"], "exact_name")
+        self.assertEqual(payload["match"]["match_type"], "exact_match")
+        self.assertEqual(payload["match"]["normalized_input"], "klettern")
 
     def test_qualify_hyphen_and_punctuation_variation(self):
         response = self.client.post("/qualify", json={"activity": "3D-Druck!"})
@@ -99,6 +100,8 @@ class QualifyEndpointTestCase(unittest.TestCase):
                 payload = response.get_json()
                 self.assertTrue(payload["match"]["matched"])
                 self.assertEqual(payload["match"]["activity_name"], expected_activity)
+                if user_input in {"klettern gehen", "fahrrad fahren"}:
+                    self.assertEqual(payload["match"]["match_type"], "normalized_match")
 
     def test_qualify_unknown_activity(self):
         response = self.client.post("/qualify", json={"activity": "Space-Bongo"})
@@ -106,6 +109,8 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         payload = response.get_json()
         self.assertFalse(payload["match"]["matched"])
+        self.assertEqual(payload["match"]["match_type"], "no_match")
+        self.assertEqual(payload["match"]["normalized_input"], "space bongo")
         self._assert_regression_fields(payload, "insufficient_evidence")
         self.assertEqual(payload["attributes"], {})
 
