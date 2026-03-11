@@ -24,6 +24,45 @@ from app.contracts import QualificationInput
 from app.orchestration import AppOrchestrator
 from models import db, seed_data
 
+_ALLOWED_FREQUENCY = {"rarely", "occasionally", "regularly"}
+_ALLOWED_IMPORTANCE = {"low", "medium", "high"}
+
+
+def _parse_qualification_input(payload: object) -> tuple[QualificationInput | None, tuple[dict[str, str], int] | None]:
+    if not isinstance(payload, dict) or not isinstance(payload.get("activity"), str):
+        return None, ({"error": "Payload must contain string field 'activity'."}, 400)
+
+    activity = payload["activity"].strip()
+    if not activity:
+        return None, ({"error": "Field 'activity' must not be empty."}, 400)
+
+    for bool_field in ("currently_active", "previously_active", "intends_to_resume"):
+        value = payload.get(bool_field)
+        if value is not None and not isinstance(value, bool):
+            return None, ({"error": f"Field '{bool_field}' must be a boolean when provided."}, 400)
+
+    frequency = payload.get("frequency")
+    if frequency is not None:
+        if not isinstance(frequency, str) or frequency not in _ALLOWED_FREQUENCY:
+            return None, ({"error": "Field 'frequency' must be one of: rarely, occasionally, regularly."}, 400)
+
+    personal_importance = payload.get("personal_importance")
+    if personal_importance is not None:
+        if not isinstance(personal_importance, str) or personal_importance not in _ALLOWED_IMPORTANCE:
+            return None, ({"error": "Field 'personal_importance' must be one of: low, medium, high."}, 400)
+
+    return (
+        QualificationInput(
+            activity=activity,
+            currently_active=payload.get("currently_active"),
+            previously_active=payload.get("previously_active"),
+            frequency=frequency,
+            personal_importance=personal_importance,
+            intends_to_resume=payload.get("intends_to_resume"),
+        ),
+        None,
+    )
+
 
 def create_app() -> Flask:
     """Factory to create and configure the Flask application instance."""
@@ -100,15 +139,11 @@ def create_app() -> Flask:
 
     @app.route("/qualify", methods=["POST"])
     def qualify_activity():
-        payload = request.get_json(silent=True)
-        if not isinstance(payload, dict) or not isinstance(payload.get("activity"), str):
-            return jsonify({"error": "Payload must contain string field 'activity'."}), 400
+        parsed, error = _parse_qualification_input(request.get_json(silent=True))
+        if error:
+            return jsonify(error[0]), error[1]
 
-        activity = payload["activity"].strip()
-        if not activity:
-            return jsonify({"error": "Field 'activity' must not be empty."}), 400
-
-        result = orchestrator.qualify_activity(QualificationInput(activity=activity))
+        result = orchestrator.qualify_activity(parsed)
         return jsonify(result)
 
     return app

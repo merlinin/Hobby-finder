@@ -40,6 +40,33 @@ Die API ist anschließend unter `http://localhost:5000/` erreichbar.
   filtert nach Name, `attribute` filtert nach Attributname.
 - `GET /attributes` – Gibt alle definierten Attribute zurück.
 
+- `POST /qualify` – Zweistufige Bewertung: allgemeine Aktivitäts-Qualification plus persönlicher Hobby-Status.
+
+### `/qualify` Request (neu in Phase 2 Slice 2)
+
+Pflichtfeld:
+
+```json
+{
+  "activity": "bouldern"
+}
+```
+
+Optionale Nutzerkontext-Felder:
+
+- `currently_active` (`bool`)
+- `previously_active` (`bool`)
+- `frequency` (`"rarely" | "occasionally" | "regularly"`)
+- `personal_importance` (`"low" | "medium" | "high"`)
+- `intends_to_resume` (`bool`)
+
+Response enthält zusätzlich:
+
+- `personal_status` (`active_hobby | dormant_hobby | former_hobby | emerging_interest | not_a_hobby | insufficient_personal_context`)
+- `personal_explanation` (kurze Begründung der persönlichen Einstufung)
+
+Hinweis: Bei fehlenden oder zu dünnen persönlichen Angaben liefert das System `insufficient_personal_context` statt vorschnell `not_a_hobby`.
+
 Die Datenbank wird beim ersten Start automatisch erstellt und mit
 Beispieldaten befüllt. Sie können die Seed‑Werte in
 `models.py` anpassen.

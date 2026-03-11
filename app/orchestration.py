@@ -7,6 +7,8 @@ from dataclasses import dataclass, field
 from app.contracts import QualificationInput
 from knowledge_base.adapter import KnowledgeBaseAdapter
 from matching.adapter import MatchingAdapter
+from personal_status.adapter import PersonalStatusAdapter
+from personal_status.port import UserContext
 from qualification.adapter import PreliminaryQualificationAdapter
 from research.adapter import ResearchAdapter
 
@@ -21,6 +23,7 @@ class AppOrchestrator:
     qualification_adapter: PreliminaryQualificationAdapter = field(
         default_factory=PreliminaryQualificationAdapter
     )
+    personal_status_adapter: PersonalStatusAdapter = field(default_factory=PersonalStatusAdapter)
 
     def get_index_context(self) -> dict[str, object]:
         return {"top_words": self.research_adapter.get_top_words(top_n=12)}
@@ -43,8 +46,24 @@ class AppOrchestrator:
         attributes = self.knowledge_base_adapter.get_activity_attributes(hobby)
         qualification = self.qualification_adapter.qualify(match.matched, attributes)
 
+        user_context = UserContext(
+            currently_active=payload.currently_active,
+            previously_active=payload.previously_active,
+            frequency=payload.frequency,
+            personal_importance=payload.personal_importance,
+            intends_to_resume=payload.intends_to_resume,
+        )
+        personal_status = self.personal_status_adapter.derive(qualification.status, user_context)
+
         return {
-            "input": {"activity": payload.activity},
+            "input": {
+                "activity": payload.activity,
+                "currently_active": payload.currently_active,
+                "previously_active": payload.previously_active,
+                "frequency": payload.frequency,
+                "personal_importance": payload.personal_importance,
+                "intends_to_resume": payload.intends_to_resume,
+            },
             "match": {
                 "matched": match.matched,
                 "activity_name": match.activity_name,
@@ -62,4 +81,6 @@ class AppOrchestrator:
                 "missing_or_weak_attributes": qualification.missing_or_weak_attributes,
             },
             "explanation": qualification.explanation,
+            "personal_status": personal_status.status,
+            "personal_explanation": personal_status.explanation,
         }

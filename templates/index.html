@@ -5,120 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hobby Finder – Activity Qualification Demo</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background: #f5f7fb;
-        color: #1b1f2a;
-      }
-      .container {
-        max-width: 760px;
-        margin: 0 auto;
-        padding: 24px;
-      }
-      .card {
-        background: white;
-        border-radius: 12px;
-        padding: 16px;
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-      }
-      h1, h2, h3 {
-        margin-top: 0;
-      }
-      .muted {
-        color: #5a6478;
-      }
-      .row {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      input[type="text"] {
-        flex: 1;
-        min-width: 240px;
-        padding: 10px;
-        border: 1px solid #ccd5e5;
-        border-radius: 8px;
-      }
-      button {
-        border: none;
-        border-radius: 8px;
-        padding: 10px 14px;
-        background: #2f62ff;
-        color: white;
-        cursor: pointer;
-      }
-      .sample-btn {
-        background: #eef3ff;
-        color: #2042a5;
-      }
-      .result {
-        margin-top: 16px;
-        background: #f8faff;
-        border: 1px solid #dde3f0;
-        border-radius: 8px;
-        padding: 12px;
-      }
-      .result-grid {
-        display: grid;
-        gap: 8px;
-      }
-      .status-badge {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: #e7edff;
-        color: #1e3f9a;
-        font-size: 0.9rem;
-      }
-      ul {
-        margin: 6px 0 0;
-        padding-left: 20px;
-      }
-      .list-empty {
-        margin-top: 6px;
-      }
-      pre {
-        margin: 8px 0 0;
-        white-space: pre-wrap;
-      }
+      body { font-family: Arial, sans-serif; margin: 0; background: #f5f7fb; color: #1b1f2a; }
+      .container { max-width: 860px; margin: 0 auto; padding: 24px; }
+      .card { background: white; border-radius: 12px; padding: 16px; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08); }
+      h1, h2, h3 { margin-top: 0; }
+      .muted { color: #5a6478; }
+      .row { display: flex; gap: 8px; flex-wrap: wrap; }
+      input[type="text"], select { flex: 1; min-width: 200px; padding: 10px; border: 1px solid #ccd5e5; border-radius: 8px; }
+      .field { min-width: 180px; flex: 1; }
+      label { display: block; margin-bottom: 6px; font-size: 0.9rem; }
+      button { border: none; border-radius: 8px; padding: 10px 14px; background: #2f62ff; color: white; cursor: pointer; }
+      .sample-btn { background: #eef3ff; color: #2042a5; }
+      .result { margin-top: 16px; background: #f8faff; border: 1px solid #dde3f0; border-radius: 8px; padding: 12px; }
+      .result-grid { display: grid; gap: 8px; }
+      .status-badge { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #e7edff; color: #1e3f9a; font-size: 0.9rem; }
+      ul { margin: 6px 0 0; padding-left: 20px; }
+      .list-empty { margin-top: 6px; }
     </style>
   </head>
   <body>
     <main class="container">
       <section class="card">
         <h1>Hobby Finder – Activity Qualification Demo</h1>
-        <p class="muted">Welche Tätigkeit möchtest du prüfen?</p>
+        <p class="muted">Welche Tätigkeit möchtest du prüfen? Optional kannst du persönlichen Kontext ergänzen.</p>
+        <p class="muted">Fehlende persönliche Angaben führen zu einer vorsichtigen Einordnung (insufficient_personal_context).</p>
 
         <div class="row" style="margin-bottom: 8px;">
           <input id="activity-input" type="text" placeholder="z. B. bouldern" />
           <button id="qualify-btn" type="button">Prüfen</button>
         </div>
 
+        <div class="row" style="margin-bottom: 10px;">
+          <div class="field">
+            <label for="currently-active">Aktuell aktiv?</label>
+            <select id="currently-active"><option value="">(optional)</option><option value="true">ja</option><option value="false">nein</option></select>
+          </div>
+          <div class="field">
+            <label for="previously-active">Früher aktiv?</label>
+            <select id="previously-active"><option value="">(optional)</option><option value="true">ja</option><option value="false">nein</option></select>
+          </div>
+          <div class="field">
+            <label for="intends-to-resume">Wieder aufnehmen?</label>
+            <select id="intends-to-resume"><option value="">(optional)</option><option value="true">ja</option><option value="false">nein</option></select>
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 12px;">
+          <div class="field">
+            <label for="frequency">Häufigkeit</label>
+            <select id="frequency"><option value="">(optional)</option><option value="rarely">rarely</option><option value="occasionally">occasionally</option><option value="regularly">regularly</option></select>
+          </div>
+          <div class="field">
+            <label for="importance">Persönliche Bedeutung</label>
+            <select id="importance"><option value="">(optional)</option><option value="low">low</option><option value="medium">medium</option><option value="high">high</option></select>
+          </div>
+        </div>
+
         <div class="row" style="margin-bottom: 12px;">
           <button class="sample-btn" type="button" data-sample="bouldern">bouldern</button>
           <button class="sample-btn" type="button" data-sample="mountainbike">mountainbike</button>
           <button class="sample-btn" type="button" data-sample="gitarre">gitarre</button>
-          <button class="sample-btn" type="button" data-sample="fotografie">fotografie</button>
-          <button class="sample-btn" type="button" data-sample="briefmarkensammeln">briefmarkensammeln</button>
         </div>
 
         <div id="result" class="result" hidden>
           <h3>Ergebnis</h3>
           <div class="result-grid">
             <div><strong>Erkannte Aktivität:</strong> <span id="recognized-activity">-</span></div>
-            <div>
-              <strong>Status:</strong>
-              <span id="qualification-status" class="status-badge">-</span>
-            </div>
+            <div><strong>Qualification:</strong> <span id="qualification-status" class="status-badge">-</span></div>
+            <div><strong>Personal Status:</strong> <span id="personal-status" class="status-badge">-</span></div>
             <div><strong>Score:</strong> <span id="qualification-score">-</span></div>
-
+            <div><strong>Explanation:</strong> <span id="qualification-explanation">-</span></div>
+            <div><strong>Personal Explanation:</strong> <span id="personal-explanation">-</span></div>
             <div>
               <strong>Supporting attributes:</strong>
               <ul id="supporting-attributes" hidden></ul>
               <div id="supporting-empty" class="muted list-empty">Keine vorhanden</div>
             </div>
-
             <div>
               <strong>Missing or weak attributes:</strong>
               <ul id="missing-attributes" hidden></ul>
@@ -133,10 +95,14 @@
       const inputEl = document.getElementById("activity-input");
       const qualifyBtn = document.getElementById("qualify-btn");
       const resultEl = document.getElementById("result");
+      const boolValue = (v) => (v === "" ? undefined : v === "true");
 
       const recognizedEl = document.getElementById("recognized-activity");
       const statusEl = document.getElementById("qualification-status");
+      const personalStatusEl = document.getElementById("personal-status");
       const scoreEl = document.getElementById("qualification-score");
+      const explanationEl = document.getElementById("qualification-explanation");
+      const personalExplanationEl = document.getElementById("personal-explanation");
       const supportingListEl = document.getElementById("supporting-attributes");
       const supportingEmptyEl = document.getElementById("supporting-empty");
       const missingListEl = document.getElementById("missing-attributes");
@@ -144,58 +110,52 @@
 
       function renderList(listEl, emptyEl, items) {
         listEl.innerHTML = "";
-        if (!items.length) {
-          listEl.hidden = true;
-          emptyEl.hidden = false;
-          return;
-        }
-
-        items.forEach((item) => {
-          const entry = document.createElement("li");
-          entry.textContent = item;
-          listEl.appendChild(entry);
-        });
-
-        listEl.hidden = false;
-        emptyEl.hidden = true;
+        if (!items.length) { listEl.hidden = true; emptyEl.hidden = false; return; }
+        items.forEach((item) => { const entry = document.createElement("li"); entry.textContent = item; listEl.appendChild(entry); });
+        listEl.hidden = false; emptyEl.hidden = true;
       }
 
       function renderResult(payload) {
         const match = payload.match || {};
         const qualification = payload.qualification || {};
-
         recognizedEl.textContent = match.activity_name || "Nicht erkannt";
-
         statusEl.textContent = qualification.status || "-";
+        personalStatusEl.textContent = payload.personal_status || "-";
         scoreEl.textContent = Number.isFinite(qualification.score) ? qualification.score : "-";
-
-        const supportingAttributes = qualification.supporting_attributes || [];
-        const missingAttributes = qualification.missing_or_weak_attributes || [];
-
-        renderList(supportingListEl, supportingEmptyEl, supportingAttributes);
-        renderList(missingListEl, missingEmptyEl, missingAttributes);
-
+        explanationEl.textContent = payload.explanation || "-";
+        personalExplanationEl.textContent = payload.personal_explanation || "-";
+        renderList(supportingListEl, supportingEmptyEl, qualification.supporting_attributes || []);
+        renderList(missingListEl, missingEmptyEl, qualification.missing_or_weak_attributes || []);
         resultEl.hidden = false;
       }
 
       async function qualifyActivity() {
         const activity = inputEl.value.trim();
-        if (!activity) {
-          return;
-        }
+        if (!activity) return;
 
-        const response = await fetch("/qualify", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ activity }),
-        });
+        const body = { activity };
+        const currentlyActive = boolValue(document.getElementById("currently-active").value);
+        const previouslyActive = boolValue(document.getElementById("previously-active").value);
+        const intendsToResume = boolValue(document.getElementById("intends-to-resume").value);
+        const frequency = document.getElementById("frequency").value;
+        const personalImportance = document.getElementById("importance").value;
 
+        if (currentlyActive !== undefined) body.currently_active = currentlyActive;
+        if (previouslyActive !== undefined) body.previously_active = previouslyActive;
+        if (intendsToResume !== undefined) body.intends_to_resume = intendsToResume;
+        if (frequency) body.frequency = frequency;
+        if (personalImportance) body.personal_importance = personalImportance;
+
+        const response = await fetch("/qualify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
         const payload = await response.json();
 
         if (!response.ok) {
           recognizedEl.textContent = "Fehler";
           statusEl.textContent = `HTTP ${response.status}`;
+          personalStatusEl.textContent = "-";
           scoreEl.textContent = "-";
+          explanationEl.textContent = payload.error || "Unbekannter Fehler";
+          personalExplanationEl.textContent = "-";
           renderList(supportingListEl, supportingEmptyEl, []);
           renderList(missingListEl, missingEmptyEl, []);
           resultEl.hidden = false;
@@ -206,17 +166,9 @@
       }
 
       qualifyBtn.addEventListener("click", qualifyActivity);
-      inputEl.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          qualifyActivity();
-        }
-      });
-
+      inputEl.addEventListener("keydown", (event) => { if (event.key === "Enter") qualifyActivity(); });
       document.querySelectorAll("[data-sample]").forEach((button) => {
-        button.addEventListener("click", () => {
-          inputEl.value = button.dataset.sample;
-          inputEl.focus();
-        });
+        button.addEventListener("click", () => { inputEl.value = button.dataset.sample; inputEl.focus(); });
       });
     </script>
   </body>

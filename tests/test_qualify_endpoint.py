@@ -38,6 +38,8 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self.assertIn("score", payload["qualification"])
         self.assertIn("supporting_attributes", payload["qualification"])
         self.assertIn("missing_or_weak_attributes", payload["qualification"])
+        self.assertIn("personal_status", payload)
+        self.assertIn("personal_explanation", payload)
 
     def test_qualify_known_activity(self):
         response = self.client.post("/qualify", json={"activity": "Klettern"})
@@ -147,6 +149,94 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self.assertIn("explanation", payload)
         self.assertIn("supporting_attributes", payload["qualification"])
         self.assertIn("missing_or_weak_attributes", payload["qualification"])
+        self.assertIn("personal_status", payload)
+        self.assertIn("personal_explanation", payload)
+
+    def test_qualify_with_personal_context_returns_active_hobby(self):
+        response = self.client.post(
+            "/qualify",
+            json={
+                "activity": "Klettern",
+                "currently_active": True,
+                "frequency": "regularly",
+                "personal_importance": "high",
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertEqual(payload["personal_status"], "active_hobby")
+        self.assertIn("active_hobby", payload["personal_explanation"])
+
+    def test_qualify_with_former_context_returns_former_hobby(self):
+        response = self.client.post(
+            "/qualify",
+            json={
+                "activity": "Klettern",
+                "currently_active": False,
+                "previously_active": True,
+                "intends_to_resume": False,
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertEqual(payload["personal_status"], "former_hobby")
+
+    def test_qualify_with_dormant_context_returns_dormant_hobby(self):
+        response = self.client.post(
+            "/qualify",
+            json={
+                "activity": "Klettern",
+                "currently_active": False,
+                "previously_active": True,
+                "intends_to_resume": True,
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertEqual(payload["personal_status"], "dormant_hobby")
+
+    def test_qualify_with_missing_optional_context_fields_returns_context_status(self):
+        response = self.client.post("/qualify", json={"activity": "Klettern"})
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertEqual(payload["personal_status"], "insufficient_personal_context")
+        self.assertIn("fehlen ausreichende Angaben", payload["personal_explanation"])
+
+    def test_qualify_with_thin_context_does_not_default_to_not_a_hobby(self):
+        response = self.client.post(
+            "/qualify",
+            json={"activity": "Klettern", "personal_importance": "low"},
+        )
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertEqual(payload["personal_status"], "insufficient_personal_context")
+
+    def test_qualify_with_negative_personal_evidence_returns_not_a_hobby(self):
+        response = self.client.post(
+            "/qualify",
+            json={
+                "activity": "Space-Bongo",
+                "currently_active": False,
+                "previously_active": False,
+                "intends_to_resume": False,
+                "personal_importance": "low",
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertEqual(payload["qualification"]["status"], "insufficient_evidence")
+        self.assertEqual(payload["personal_status"], "not_a_hobby")
+
+    def test_qualify_rejects_invalid_frequency(self):
+        response = self.client.post("/qualify", json={"activity": "Klettern", "frequency": "daily"})
+        self.assertEqual(response.status_code, 400)
+
+    def test_qualify_rejects_invalid_context_type(self):
+        response = self.client.post("/qualify", json={"activity": "Klettern", "currently_active": "yes"})
+        self.assertEqual(response.status_code, 400)
 
     def test_qualify_invalid_payload(self):
         response = self.client.post("/qualify", json={"activity": 42})
