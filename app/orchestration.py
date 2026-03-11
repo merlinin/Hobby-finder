@@ -68,6 +68,7 @@ class AppOrchestrator:
                 "matched": match.matched,
                 "activity_name": match.activity_name,
                 "match_type": match.match_type,
+                "normalized_input": match.normalized_input,
                 "confidence": match.confidence,
             },
             "attributes": attributes,

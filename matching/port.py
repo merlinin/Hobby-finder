@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Literal, Protocol
 
 
-MatchType = Literal["exact_name", "exact_alias", "none"]
+MatchType = Literal["exact_match", "alias_match", "normalized_match", "no_match"]
 
 
 @dataclass(frozen=True)
@@ -16,6 +16,7 @@ class MatchResult:
     matched: bool
     activity_name: str | None
     match_type: MatchType
+    normalized_input: str
     confidence: float
 
 
