@@ -12,7 +12,9 @@ _SIMPLE_PHRASE_SIMPLIFICATIONS = {
     "klettern gehen": "klettern",
     "musik machen": "musik",
     "fahrrad fahren": "fahrrad",
+    "briefmarken sammeln": "briefmarken",
 }
+
 
 
 def _normalize(text: str) -> str:
@@ -46,6 +48,23 @@ class MatchingAdapter(MatchingPort):
             "autoschrauben": "Autos reparieren",
             "gaertnern": "Gärtnern",
             "fahrrad": "Radfahren",
+            "schwimmen gehen": "Schwimmen",
+            "schwimmen": "Schwimmen",
+            "yoga machen": "Yoga",
+            "yoga": "Yoga",
+            "hiken": "Wandern",
+            "wandern gehen": "Wandern",
+            "malen": "Malen",
+            "zeichnen und malen": "Malen",
+            "piano": "Klavier spielen",
+            "klavier": "Klavier spielen",
+            "löten": "Elektronik basteln",
+            "loeten": "Elektronik basteln",
+            "arduino": "Elektronik basteln",
+            "briefmarken": "Briefmarken sammeln",
+            "philatelie": "Briefmarken sammeln",
+            "birdwatching": "Vogelbeobachtung",
+            "vogelbeobachten": "Vogelbeobachtung",
         }
     )
 

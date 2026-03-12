@@ -6,7 +6,7 @@ from matching.adapter import MatchingAdapter
 class MatchingAdapterTestCase(unittest.TestCase):
     def setUp(self):
         self.adapter = MatchingAdapter()
-        self.canonical_names = ["Klettern", "Programmieren", "Radfahren", "Gitarre spielen"]
+        self.canonical_names = ["Klettern", "Programmieren", "Radfahren", "Gitarre spielen", "Schwimmen", "Yoga", "Wandern", "Malen", "Klavier spielen", "Elektronik basteln", "Briefmarken sammeln", "Vogelbeobachtung"]
 
     def test_exact_name_match_is_detected(self):
         result = self.adapter.match_activity("Klettern", self.canonical_names)
@@ -35,6 +35,24 @@ class MatchingAdapterTestCase(unittest.TestCase):
 
         self.assertTrue(gitarre.matched)
         self.assertEqual(gitarre.activity_name, "Gitarre spielen")
+
+
+    def test_phase2_slice3_aliases_are_detected(self):
+        alias_cases = {
+            "yoga machen": "Yoga",
+            "hiken": "Wandern",
+            "piano": "Klavier spielen",
+            "loeten": "Elektronik basteln",
+            "philatelie": "Briefmarken sammeln",
+            "birdwatching": "Vogelbeobachtung",
+        }
+
+        for user_input, expected_activity in alias_cases.items():
+            with self.subTest(user_input=user_input):
+                result = self.adapter.match_activity(user_input, self.canonical_names)
+                self.assertTrue(result.matched)
+                self.assertEqual(result.activity_name, expected_activity)
+                self.assertEqual(result.match_type, "alias_match")
 
     def test_case_and_whitespace_normalization_is_applied(self):
         result = self.adapter.match_activity("  kLeTtErN ", self.canonical_names)

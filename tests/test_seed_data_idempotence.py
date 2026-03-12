@@ -42,6 +42,14 @@ class SeedDataIdempotenceTestCase(unittest.TestCase):
         self.assertIn("Fotografie", names)
         self.assertIn("Gitarre spielen", names)
         self.assertIn("Radfahren", names)
+        self.assertIn("Schwimmen", names)
+        self.assertIn("Yoga", names)
+        self.assertIn("Wandern", names)
+        self.assertIn("Malen", names)
+        self.assertIn("Klavier spielen", names)
+        self.assertIn("Elektronik basteln", names)
+        self.assertIn("Briefmarken sammeln", names)
+        self.assertIn("Vogelbeobachtung", names)
 
 
 if __name__ == "__main__":
