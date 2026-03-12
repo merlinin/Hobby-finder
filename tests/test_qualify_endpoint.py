@@ -68,6 +68,27 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self._assert_regression_fields(payload, "qualified_hobby")
 
 
+
+    def test_qualify_phase2_slice3_alias_coverage(self):
+        alias_cases = {
+            "yoga machen": "Yoga",
+            "hiken": "Wandern",
+            "piano": "Klavier spielen",
+            "loeten": "Elektronik basteln",
+            "philatelie": "Briefmarken sammeln",
+            "birdwatching": "Vogelbeobachtung",
+        }
+
+        for user_input, expected_activity in alias_cases.items():
+            with self.subTest(user_input=user_input):
+                response = self.client.post("/qualify", json={"activity": user_input})
+                self.assertEqual(response.status_code, 200)
+                payload = response.get_json()
+                self.assertTrue(payload["match"]["matched"])
+                self.assertEqual(payload["match"]["activity_name"], expected_activity)
+                self.assertEqual(payload["match"]["match_type"], "alias_match")
+                self._assert_regression_fields(payload, "qualified_hobby")
+
     def test_qualify_capitalization_and_whitespace_variation(self):
         response = self.client.post("/qualify", json={"activity": "   kLeTtErN   "})
 
