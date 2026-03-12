@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 from app.contracts import QualificationInput
 from knowledge_base.adapter import KnowledgeBaseAdapter
 from matching.adapter import MatchingAdapter
+from matching.port import MatchType
 from personal_status.adapter import PersonalStatusAdapter
 from personal_status.port import UserContext
 from qualification.adapter import PreliminaryQualificationAdapter
@@ -54,6 +55,12 @@ class AppOrchestrator:
             intends_to_resume=payload.intends_to_resume,
         )
         personal_status = self.personal_status_adapter.derive(qualification.status, user_context)
+        matching_hint = self._build_matching_hint(match.match_type, match.activity_name)
+
+        # Compatibility note: `explanation` is kept for existing clients.
+        # `general_explanation` is the preferred explicit field and currently mirrors
+        # the same content to avoid contract drift during the transition.
+        general_explanation = qualification.explanation
 
         return {
             "input": {
@@ -81,7 +88,24 @@ class AppOrchestrator:
                 "supporting_attributes": qualification.supporting_attributes,
                 "missing_or_weak_attributes": qualification.missing_or_weak_attributes,
             },
-            "explanation": qualification.explanation,
+            "explanation": general_explanation,
+            "general_explanation": general_explanation,
             "personal_status": personal_status.status,
             "personal_explanation": personal_status.explanation,
+            "matching_hint": matching_hint,
         }
+
+    def _build_matching_hint(self, match_type: MatchType, activity_name: str | None) -> str:
+        if match_type == "exact_match":
+            return f"Matching-Hinweis: Direkter Treffer auf '{activity_name}'."
+        if match_type == "alias_match":
+            return f"Matching-Hinweis: Über einen bekannten Alias wurde '{activity_name}' erkannt."
+        if match_type == "normalized_match":
+            return (
+                "Matching-Hinweis: Die Eingabe wurde zuerst normalisiert und dann einer bekannten "
+                f"Aktivität ('{activity_name}') zugeordnet."
+            )
+        return (
+            "Matching-Hinweis: Kein belastbarer Treffer in der Knowledge Base. "
+            "Die allgemeine Einordnung bleibt deshalb unsicher."
+        )

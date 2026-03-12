@@ -109,10 +109,10 @@ class PreliminaryQualificationAdapter(QualificationPort):
             strength = "weak"
 
         explanation = (
-            f"Status: {status}. "
-            f"Unterstützende Merkmale: {', '.join(supporting_attributes) if supporting_attributes else 'keine starken Merkmale'}. "
-            f"Schwache/fehlende Kernmerkmale: {', '.join(missing_or_weak_attributes) if missing_or_weak_attributes else 'keine'}. "
-            f"Begründung: {reason}"
+            f"Allgemeine Einschätzung der Tätigkeit: {status}. "
+            f"Dafür sprechen: {', '.join(supporting_attributes) if supporting_attributes else 'keine klar starken Merkmale'}. "
+            f"Unsicher oder schwach: {', '.join(missing_or_weak_attributes) if missing_or_weak_attributes else 'keine auffälligen Schwächen'}. "
+            f"Einordnung: {reason}"
         )
 
         return QualificationResult(

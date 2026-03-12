@@ -62,8 +62,12 @@ Optionale Nutzerkontext-Felder:
 
 Response enthält zusätzlich:
 
+- `general_explanation` (allgemeine Einordnung der Tätigkeit; bevorzugtes Feld für neue Clients)
 - `personal_status` (`active_hobby | dormant_hobby | former_hobby | emerging_interest | not_a_hobby | insufficient_personal_context`)
 - `personal_explanation` (kurze Begründung der persönlichen Einstufung)
+- `matching_hint` (kurzer Hinweis, ob exact/alias/normalized/no_match)
+
+Kompatibilität: `explanation` bleibt vorerst als Legacy-Feld erhalten und ist inhaltlich identisch zu `general_explanation`, damit bestehende Clients nicht brechen.
 
 Hinweis: Bei fehlenden oder zu dünnen persönlichen Angaben liefert das System `insufficient_personal_context` statt vorschnell `not_a_hobby`.
 

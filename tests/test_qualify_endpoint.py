@@ -39,7 +39,10 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self.assertIn("supporting_attributes", payload["qualification"])
         self.assertIn("missing_or_weak_attributes", payload["qualification"])
         self.assertIn("personal_status", payload)
+        self.assertIn("general_explanation", payload)
         self.assertIn("personal_explanation", payload)
+        self.assertIn("matching_hint", payload)
+        self.assertEqual(payload["explanation"], payload["general_explanation"])
 
     def test_qualify_known_activity(self):
         response = self.client.post("/qualify", json={"activity": "Klettern"})
@@ -56,6 +59,7 @@ class QualifyEndpointTestCase(unittest.TestCase):
         payload = response.get_json()
         self.assertEqual(payload["match"]["match_type"], "alias_match")
         self.assertEqual(payload["match"]["activity_name"], "Klettern")
+        self.assertIn("Alias", payload["matching_hint"])
         self._assert_regression_fields(payload, "qualified_hobby")
 
     def test_qualify_new_alias_activity(self):
@@ -132,6 +136,7 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self.assertFalse(payload["match"]["matched"])
         self.assertEqual(payload["match"]["match_type"], "no_match")
         self.assertEqual(payload["match"]["normalized_input"], "space bongo")
+        self.assertIn("Kein belastbarer Treffer", payload["matching_hint"])
         self._assert_regression_fields(payload, "insufficient_evidence")
         self.assertEqual(payload["attributes"], {})
 
@@ -176,7 +181,9 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self.assertIn("supporting_attributes", payload["qualification"])
         self.assertIn("missing_or_weak_attributes", payload["qualification"])
         self.assertIn("personal_status", payload)
+        self.assertIn("general_explanation", payload)
         self.assertIn("personal_explanation", payload)
+        self.assertIn("matching_hint", payload)
 
     def test_qualify_with_personal_context_returns_active_hobby(self):
         response = self.client.post(
@@ -193,6 +200,7 @@ class QualifyEndpointTestCase(unittest.TestCase):
         payload = response.get_json()
         self.assertEqual(payload["personal_status"], "active_hobby")
         self.assertIn("active_hobby", payload["personal_explanation"])
+        self.assertIn("Allgemeine Einschätzung", payload["general_explanation"])
 
     def test_qualify_with_former_context_returns_former_hobby(self):
         response = self.client.post(
@@ -229,7 +237,7 @@ class QualifyEndpointTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         payload = response.get_json()
         self.assertEqual(payload["personal_status"], "insufficient_personal_context")
-        self.assertIn("fehlen ausreichende Angaben", payload["personal_explanation"])
+        self.assertIn("insufficient_personal_context", payload["personal_explanation"])
 
     def test_qualify_with_thin_context_does_not_default_to_not_a_hobby(self):
         response = self.client.post(
