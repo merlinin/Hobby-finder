@@ -30,8 +30,8 @@ class PersonalStatusAdapter(PersonalStatusPort):
             return PersonalStatusResult(
                 status="dormant_hobby",
                 explanation=(
-                    "Du warst mit der Aktivität früher aktiv, bist aktuell pausiert und möchtest wieder "
-                    "einsteigen; deshalb wird sie als dormant_hobby eingeordnet."
+                    "Persönlicher Status: dormant_hobby. Du warst früher aktiv, bist aktuell pausiert "
+                    "und möchtest wieder einsteigen."
                 ),
             )
 
@@ -39,8 +39,8 @@ class PersonalStatusAdapter(PersonalStatusPort):
             return PersonalStatusResult(
                 status="former_hobby",
                 explanation=(
-                    "Du warst mit der Aktivität früher aktiv, bist aktuell nicht aktiv und planst keine "
-                    "Wiederaufnahme; deshalb former_hobby."
+                    "Persönlicher Status: former_hobby. Du warst früher aktiv, übst die Aktivität aktuell "
+                    "nicht aus und planst keine Wiederaufnahme."
                 ),
             )
 
@@ -53,8 +53,8 @@ class PersonalStatusAdapter(PersonalStatusPort):
             return PersonalStatusResult(
                 status="active_hobby",
                 explanation=(
-                    "Die Aktivität ist grundsätzlich hobbytypisch. Da du sie aktuell mit gewisser "
-                    "Regelmäßigkeit ausübst und sie dir wichtig ist, wird sie als active_hobby bewertet."
+                    "Persönlicher Status: active_hobby. Du übst die Aktivität aktuell aus, tust das "
+                    "mit Regelmäßigkeit und sie hat für dich persönliche Bedeutung."
                 ),
             )
 
@@ -62,9 +62,8 @@ class PersonalStatusAdapter(PersonalStatusPort):
             return PersonalStatusResult(
                 status="emerging_interest",
                 explanation=(
-                    "Es gibt erkennbare positive Signale (z. B. erste Aktivität, Interesse oder "
-                    "Wiederaufnahmeabsicht), aber noch kein stabiles Muster für ein aktives Hobby; "
-                    "daher emerging_interest."
+                    "Persönlicher Status: emerging_interest. Es gibt positive Signale (z. B. aktuelles "
+                    "Interesse oder Wiederaufnahmeabsicht), aber noch kein stabiles Hobby-Muster."
                 ),
             )
 
@@ -72,16 +71,16 @@ class PersonalStatusAdapter(PersonalStatusPort):
             return PersonalStatusResult(
                 status="not_a_hobby",
                 explanation=(
-                    "Die Aktivität ist aktuell eher kein Hobby: Die allgemeine Einordnung ist nicht "
-                    "hobbytypisch und die persönlichen Angaben sprechen ebenfalls klar dagegen."
+                    "Persönlicher Status: not_a_hobby. Die persönlichen Angaben sprechen derzeit deutlich "
+                    "gegen eine Hobby-Einordnung."
                 ),
             )
 
         return PersonalStatusResult(
             status="insufficient_personal_context",
             explanation=(
-                "Für eine belastbare persönliche Einordnung fehlen ausreichende Angaben. Das ist keine "
-                "Aussage, dass die Aktivität kein Hobby ist."
+                "Persönlicher Status: insufficient_personal_context. Für eine belastbare persönliche "
+                "Einordnung fehlen ausreichende Angaben. Das ist ausdrücklich kein automatisches 'not_a_hobby'."
             ),
         )
 
